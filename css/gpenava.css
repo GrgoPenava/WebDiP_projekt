@@ -1,0 +1,665 @@
+body{
+  margin: 0px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+h1 {
+    font-family: Arial;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #333;
+    text-shadow: 1px 1px 1px #ccc;
+  }
+
+  .bmw-title{
+    font-size: 3rem;
+  }
+
+.gornjiDioHeadera{
+  background-color: #dadada96;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.gornjiDioHeadera #jezici{
+  margin-left: auto;
+  padding: 10px;
+  margin-right: 1rem;
+}
+
+.gornjiDioHeadera #jeziciForm{
+  margin-left: auto;
+  margin-top: 1rem;
+}
+
+.gornjiDioHeadera #searchIcon{
+    margin-right: 0;
+}
+
+.bmw-logo{
+    width: 70px;
+    height: 70px;
+    padding-right: 2rem;
+    padding-left: 1rem;
+}
+
+select {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  color: #555;
+  font-size: 15px;
+  padding: 10px;
+  width: 10rem;
+  margin-bottom: 1rem;
+}
+
+select:focus {
+  outline: none;
+  border-color: #6fb3e0;
+}
+
+#searchIcon{
+  color: black;
+  text-decoration: none;
+  padding-right: 1rem;
+  font-size:x-large;
+  cursor: pointer;
+}
+
+
+nav {
+  display: flex;
+  justify-content: center;
+  background-color: rgb(130, 168, 238);
+  padding-top: 1%;
+  padding-bottom: 1%;
+  overflow: hidden;
+  text-transform: uppercase;
+  font-family: sans-serif;
+  align-items: center;
+  }
+  
+  nav a {
+    text-decoration: none;
+    flex: 1;
+    text-align: center;
+    color: black;
+    font-weight: bold;
+  }
+
+#popup {
+    display: none;
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0.5;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    z-index: 1;
+  }
+
+
+  #searchIcon:focus + #popup {
+    display: block;
+  }
+
+  #bmwTitle{
+    text-decoration: none;
+  }
+  
+
+  footer{
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 15vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #dadada;
+  text-align: center;
+}
+
+
+#privole {
+  margin: 10px;
+}
+
+.html5-picture,.css-picture
+ {
+   margin: 10px;
+   width: 50px;
+   height: 50px;
+}
+
+
+.copyright-licenca{
+ display: flex;
+ flex-direction: column;
+ padding-left: 5rem;
+ padding-right: 5rem;
+}
+
+.licenca-slika{
+  padding-top: 1rem;
+}
+
+.odjava-button{
+  margin-right: 5px;
+  margin-left: 5px;
+  text-decoration: none;
+  text-align: center;
+  color: black;
+  font-weight: bold;
+  border-radius: 8px;
+  height: 2rem;
+  width: 5rem;
+  background-color: #e2f3ff;
+}
+
+.odjava-button:hover{
+  background-color: #79beec;
+  box-shadow: 1px 1px 3px 0 #333;
+}
+
+#pretrazivanje{
+  display: none;
+}
+
+#pretrazivanje:target{
+  z-index: 1;
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #82a8ee;
+  
+}
+
+.popup-content{
+  font-size: large;
+  display: flex;
+  color: black;
+  font-weight: bold;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+#exitIcon{
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: xx-large;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 1rem;
+}
+
+.naslov-o-autoru{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.sekcije{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+
+.prva-sekcija{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+
+.druga-sekcija{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+
+.blok-1 {
+  grid-column: 1;
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 5rem;
+}
+
+.blok-2 {
+  grid-column: 2;
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.blok-2-interesi{
+  grid-column: 2;
+  width: 45%;
+  display: flex;
+  flex-direction: column;;
+  overflow-y: scroll;
+  height: 150px;
+  text-align: start;
+  margin-bottom: 5rem;
+}
+
+.grgopenava-slika{
+  width: 300px;
+  height: 400px;
+}
+
+.grgopenava-slika:hover{
+  width: 320px;
+  height: 420px;
+}
+
+.lista-informacija{
+  text-align: start;
+  padding: 1rem;
+  display: inline-block;
+}
+
+.email{
+  text-decoration: none;
+  color: black;
+}
+
+.tekst-motivacija{
+  padding:1rem;
+}
+
+.lista-vjestine{
+  text-align: start;
+}
+
+.podrucje-interesa{
+  margin-top: 0;
+  text-align: center;
+}
+
+li{
+  margin-bottom: 10px;
+}
+
+.registracijaiprijava{
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+}
+
+.registracija{
+  border: 1px solid #333;
+  padding: 10px;
+  text-align: start;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.prijava{
+  border: 2px solid #161616;
+  background-color: #cccccc83;
+  margin: auto;
+  padding: 1rem;
+  text-align: start;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+}
+
+.registracija,
+.prijava {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 400px;
+}
+
+#submit{
+  margin-top: 1rem;
+  margin-left: 8rem;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  background-color: #6fb3e0;
+  color: black;
+  font-size: medium;
+}
+
+#submit2{
+  margin-top: 1rem;
+  margin-left: 8rem;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  background-color: #6fb3e0;
+  color: black;
+  font-size: medium;
+}
+
+#submit2:hover{
+  background-color: #a4cce7;
+  color: black;
+  font-weight: 600;
+}
+
+#submit:hover{
+  background-color: #88c0e6;
+  color: black;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 90vh;
+}
+
+main {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+}
+
+form input{
+  margin-top: 7px;
+  margin-bottom: 7px;
+}
+
+.dodavanjenoveporuke{
+  font-size: larger;
+  font-weight: bold;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+#sadrzaj{
+  display: flex;
+  flex-direction: column;
+  margin-left: 3px;
+}
+
+.sadrzajdiv{
+  display: flex;
+  padding-top: 1rem;
+}
+
+.obrazacapsolutan{
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: 3rem;
+}
+
+.dodavanjenoveporuke{
+  text-align: center;
+}
+
+.blokelementi{
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+}
+
+.prviblokelement{
+  display: grid;
+  grid-template-columns:1fr 1fr;
+  grid-template-rows:1fr 1fr;
+  gap: 2rem;
+}
+
+.autentikacija{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.autentikacijaclass{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5rem;
+}
+
+.videonaslov{
+  text-align: center;
+  font-size: x-large;
+}
+
+.naslovvidea{
+  text-align: center;
+}
+
+.blok2{
+  margin-top: 15rem;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+td {
+  padding: 10px;
+  border: 1px solid black;
+  text-align: center;
+}
+
+.neparni{
+  background-color: #fff8d6;
+}
+
+#spol{
+  height: 30px;
+  padding: 5px;
+  line-height: 1;
+  font-size: 16px;
+}
+
+#sectionTable{
+  margin: auto;
+  padding: 2rem;
+}
+
+tfoot{
+  background-color: #9dd8ff;
+  font-size: larger;
+  font-weight: bolder;
+  text-decoration: underline;
+}
+.otemi{
+  display: grid;
+  grid-template-columns: 1fr 0.3fr;
+  gap: 5rem;
+  margin-left: 6rem;
+  margin-right: 6rem;
+  text-align: center;
+  align-items: center;
+}
+
+.sadrzajclass{
+  text-align: center;
+  padding-top: 2rem;
+}
+
+.oodabranojtemi{
+  font-size: xx-large;
+}
+
+.uvod{
+  text-align: center;
+  display: grid;
+  grid-template-columns: 0.2fr 1fr;
+  gap: 2rem;
+  margin-left: 6rem;
+  margin-right: 6rem;
+  align-items: center;
+}
+
+#sadrzajcijeli{
+  color: black;
+  text-decoration: none;
+}
+
+ul.lista-informacija#sadrzajcijeli {
+  color: black;
+  text-decoration: none;
+}
+
+.zatekstdecoration{
+  text-decoration: none;
+  color: black;
+  text-transform: uppercase;
+  font-weight: bolder;
+}
+
+#bmwmsadrzaj{
+  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr 0.2fr;
+  gap: 2rem;
+  margin-left: 6rem;
+  margin-right: 6rem;
+  align-items: center;
+}
+
+#bmwmotosadrzaj{
+  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr 0.2fr;
+  gap: 2rem;
+  margin-left: 6rem;
+  margin-right: 6rem;
+  align-items: center;
+}
+
+.bmwi{
+  text-align: center;
+  display: grid;
+  grid-template-columns: 0.3fr 1fr;
+  gap: 5rem;
+  margin-left: 6rem;
+  margin-right: 6rem;
+  align-items: center;
+}
+
+.slicicegrid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+}
+
+.povijest{
+  width: 100%;
+  text-align: center;
+  background-color: #ececec;
+  border-bottom: 1px solid black;
+}
+
+.povijestuflex{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 5rem;
+  padding-bottom: 1rem;
+}
+
+th{
+  border: 1px solid black;
+  font-weight: 900;
+  font-size: large;
+}
+
+.logobmwa{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: center;
+  align-items: center;
+}
+
+.povijestpretrazivanja{
+    left: 0;
+    bottom: 15vh;
+    width: 100%;
+    height: 17vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #ecececcb;
+    text-align: center;
+    border-bottom: 1px solid black;
+}
+
+.cijelimain{
+  flex-direction: column;
+}
+
+.cijelifooter{
+  flex-direction: column;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 15vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ecececcb;
+  text-align: center;
+}
+.donjidiofootera{
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 15vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #dadada;
+  text-align: center;
+}
+
+#uvodsadrzaj:target h2 {
+  font-weight: 900;
+  color: #6b9af1;
+  text-decoration: underline;
+}
+
+#bmwmsadrzaj:target h2 {
+  font-weight: 900;
+  color: #6b9af1;
+  text-decoration: underline;
+}
+
+#bmwisadrzaj:target h2 {
+  font-weight: 900;
+  color: #6b9af1;
+  text-decoration: underline;
+}
+
+#bmwmotosadrzaj:target h2 {
+  font-weight: 900;
+  color: #6b9af1;
+  text-decoration: underline;
+}
