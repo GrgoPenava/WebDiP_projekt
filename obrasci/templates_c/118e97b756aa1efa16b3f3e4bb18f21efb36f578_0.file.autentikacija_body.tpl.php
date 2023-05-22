@@ -1,58 +1,104 @@
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="https://www.google.com/recaptcha/api.js" ></script>
-    <script src="https://www.google.com/recaptcha/enterprise.js?render=6LeZFiwmAAAAAAj9RoXSYUJUnXXpz5ZOITLEvoZ4"></script>
+<?php
+/* Smarty version 4.3.0, created on 2023-05-22 14:26:55
+  from 'C:\xampp\htdocs\projekt\templates\autentikacija_body.tpl' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '4.3.0',
+  'unifunc' => 'content_646b5f8fda3e67_30867378',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '118e97b756aa1efa16b3f3e4bb18f21efb36f578' => 
+    array (
+      0 => 'C:\\xampp\\htdocs\\projekt\\templates\\autentikacija_body.tpl',
+      1 => 1684758404,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_646b5f8fda3e67_30867378 (Smarty_Internal_Template $_smarty_tpl) {
+echo '<script'; ?>
+ src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"><?php echo '</script'; ?>
+>
+    <?php echo '<script'; ?>
+ src="//code.jquery.com/jquery-1.12.4.js"><?php echo '</script'; ?>
+>
+    <?php echo '<script'; ?>
+ src="//code.jquery.com/ui/1.12.1/jquery-ui.js"><?php echo '</script'; ?>
+>
+    <?php echo '<script'; ?>
+ src="https://www.google.com/recaptcha/api.js" ><?php echo '</script'; ?>
+>
+    <?php echo '<script'; ?>
+ src="https://www.google.com/recaptcha/enterprise.js?render=6LeZFiwmAAAAAAj9RoXSYUJUnXXpz5ZOITLEvoZ4"><?php echo '</script'; ?>
+>
 <main>
       <div class="autentikacijaclass" style="height: 30rem;">
         <section class="autentikacija" style="margin-top: 4rem;">
           <div class="registracijaiprijava">
             <div class="registracija">
               <form id="form2" method="post" name="form2" action="" novalidate>
-                <label for="imeprezime" {$imeprezimeboja}>Ime i prezime: </label>
+                <label for="imeprezime" <?php echo $_smarty_tpl->tpl_vars['imeprezimeboja']->value;?>
+>Ime i prezime: </label>
                 <input type="text" id="imeprezime" name="imeprezime" maxlength="30" placeholder="Ime i prezime" required="required" onblur="checkNameSurname()" />
                 <br />
-                {if isset($imeprezimeprovjera) && strlen($imeprezimeprovjera)>2}
-                <label style="color:red; font-size:15px;">{$imeprezimeprovjera}<label>
+                <?php if ((isset($_smarty_tpl->tpl_vars['imeprezimeprovjera']->value)) && strlen($_smarty_tpl->tpl_vars['imeprezimeprovjera']->value) > 2) {?>
+                <label style="color:red; font-size:15px;"><?php echo $_smarty_tpl->tpl_vars['imeprezimeprovjera']->value;?>
+<label>
                 <br />
-                {/if}
-                <label for="username" {$usernameboja} id="usernamelabelregister">Username: </label>
+                <?php }?>
+                <label for="username" <?php echo $_smarty_tpl->tpl_vars['usernameboja']->value;?>
+ id="usernamelabelregister">Username: </label>
                 <input type="text" id="username" name="username" maxlength="40" placeholder="username" required="required" onblur="checkUsername(); checkUsernameByJS();" />
                 <br />
-                {if isset($usernameprovjera) && strlen($usernameprovjera)>2}
-                <label style="color:red; font-size:15px;">{$usernameprovjera}<label>
+                <?php if ((isset($_smarty_tpl->tpl_vars['usernameprovjera']->value)) && strlen($_smarty_tpl->tpl_vars['usernameprovjera']->value) > 2) {?>
+                <label style="color:red; font-size:15px;"><?php echo $_smarty_tpl->tpl_vars['usernameprovjera']->value;?>
+<label>
                 <br />
-                {/if}
-                <label for="email" {$emailboja} id="emaillabelregistracija">Email adresa: </label>
+                <?php }?>
+                <label for="email" <?php echo $_smarty_tpl->tpl_vars['emailboja']->value;?>
+ id="emaillabelregistracija">Email adresa: </label>
                 <input type="email" id="email" name="email" size="30" maxlength="50" placeholder="naziv@nazivposluzitelja.xxx" required="required" onblur="checkEmail()" /><br />
-                {if isset($emailprovjera) && strlen($emailprovjera)>2}
-                <label style="color:red; font-size:15px;">{$emailprovjera}<label>
+                <?php if ((isset($_smarty_tpl->tpl_vars['emailprovjera']->value)) && strlen($_smarty_tpl->tpl_vars['emailprovjera']->value) > 2) {?>
+                <label style="color:red; font-size:15px;"><?php echo $_smarty_tpl->tpl_vars['emailprovjera']->value;?>
+<label>
                 <br />
-                {/if}
+                <?php }?>
                 <label for="spol" style="color:black;">Spol: </label>
                 <select name="spol" id="spol">
                   <option value="musko">Muško</option>
                   <option value="zensko">Žensko</option>
                 </select>
                 <br />
-                <label for="lozinka" {$lozinkaboja}>Lozinka: </label>
-                <input type="password" id="lozinka" name="lozinka" pattern=".{5}" placeholder="lozinka" required="required" /><br />
-                {if isset($lozinkaprovjera) && strlen($lozinkaprovjera)>2}
-                <label style="color:red; font-size:15px;">{$lozinkaprovjera}<label>
+                <label for="lozinka" <?php echo $_smarty_tpl->tpl_vars['lozinkaboja']->value;?>
+>Lozinka: </label>
+                <input type="password" id="lozinka" name="lozinka" pattern=".<?php echo 5;?>
+" placeholder="lozinka" required="required" /><br />
+                <?php if ((isset($_smarty_tpl->tpl_vars['lozinkaprovjera']->value)) && strlen($_smarty_tpl->tpl_vars['lozinkaprovjera']->value) > 2) {?>
+                <label style="color:red; font-size:15px;"><?php echo $_smarty_tpl->tpl_vars['lozinkaprovjera']->value;?>
+<label>
                 <br />
-                {/if}
-                <label for="potvrdalozinke" {$potvrdiboja} id="potvrdalozinkelabel">Potvrdi lozinku: </label>
-                <input type="password" id="potvrdalozinke" name="potvrdalozinke" pattern=".{5}" placeholder="potvrdi lozinku" required="required" onblur="provjeraPotvrdeneLozinke()" /><br />
-                {if isset($potvrdaprovjera) && strlen($potvrdaprovjera)>2}
-                <label style="color:red; font-size:15px;">{$potvrdaprovjera}<label>
+                <?php }?>
+                <label for="potvrdalozinke" <?php echo $_smarty_tpl->tpl_vars['potvrdiboja']->value;?>
+ id="potvrdalozinkelabel">Potvrdi lozinku: </label>
+                <input type="password" id="potvrdalozinke" name="potvrdalozinke" pattern=".<?php echo 5;?>
+" placeholder="potvrdi lozinku" required="required" onblur="provjeraPotvrdeneLozinke()" /><br />
+                <?php if ((isset($_smarty_tpl->tpl_vars['potvrdaprovjera']->value)) && strlen($_smarty_tpl->tpl_vars['potvrdaprovjera']->value) > 2) {?>
+                <label style="color:red; font-size:15px;"><?php echo $_smarty_tpl->tpl_vars['potvrdaprovjera']->value;?>
+<label>
                 <br />
-                {/if}
+                <?php }?>
                 <div class="g-recaptcha" data-sitekey="6Ld4OywmAAAAAHBF4QmpTvPmHEEybGFuG15T0BXc"></div>
                 <input id="submit" type="submit" value="Registriraj se " name="registracijaButton" disabled />
                 <p id="porukaPogreskeJS" style='color: red; text-align: center;'></p>
-                {if isset($poruka_registracija)}
-                  <p style='color: red; text-align: center;'>{$poruka_registracija}</p>
-                {/if}
+                <?php if ((isset($_smarty_tpl->tpl_vars['poruka_registracija']->value))) {?>
+                  <p style='color: red; text-align: center;'><?php echo $_smarty_tpl->tpl_vars['poruka_registracija']->value;?>
+</p>
+                <?php }?>
                 
               </form>
             </div>
@@ -63,9 +109,10 @@
                 <label for="lozinka">Lozinka: </label>
                 <input type="password" id="lozinka2" name="lozinka" size="30" placeholder="lozinka" required="required" /><br />
                 <input id="submit2" type="submit" value="Prijavi se " name="prijavaButton" />
-                {if isset($poruka)} 
-                  <p style='color: red'>{$poruka}</p>
-                {/if}
+                <?php if ((isset($_smarty_tpl->tpl_vars['poruka']->value))) {?> 
+                  <p style='color: red'><?php echo $_smarty_tpl->tpl_vars['poruka']->value;?>
+</p>
+                <?php }?>
                 <p style="font-size: small;">Administrator = gpenava@student.foi.hr - grgopenava</p>
                 <p style="font-size: small;">Moderator = markomarkovic@gmail.com - markomarkovic</p>
                 <p style="font-size: small;">Korisnik = anaanic@gmail.com - anaanic0</p>
@@ -76,7 +123,8 @@
       </div>
     </main>
 
-<script type="text/javascript">
+<?php echo '<script'; ?>
+ type="text/javascript">
   let poruka = document.getElementById('porukaPogreskeJS');
   let submitButton = document.getElementById('submit');
   let imeprezimevaljano = false;
@@ -256,4 +304,6 @@ function isEmailValid(email) {
       }
     }
 
-</script>
+<?php echo '</script'; ?>
+><?php }
+}
