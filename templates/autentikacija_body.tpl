@@ -144,7 +144,7 @@ provjeraSvihParametara();
   function checkUsername() {
     let username = document.getElementById('username').value;
     $.ajax({
-                url: '../privatno/username_provjera.php',
+                url: '../privatnoo/username_provjera.php',
                 type: 'POST',
                 dataType: 'json',
                 data: { username: username },

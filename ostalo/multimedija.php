@@ -1,5 +1,5 @@
 <?php
-include '../privatno/funkcije.php';
+include '../privatnoo/funkcije.php';
 require '../vanjske_biblioteke/smarty-4.3.0/libs/Smarty.class.php';
 
 $putanja = dirname(dirname($_SERVER['REQUEST_URI']));

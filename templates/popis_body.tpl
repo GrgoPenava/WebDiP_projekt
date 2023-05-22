@@ -68,7 +68,7 @@
            function obrisiRedak(idPoruke) {
     console.log("radi", idPoruke);
     $.ajax({
-      url: '../privatno/brisanjeRedaTablice.php',
+      url: '../privatnoo/brisanjeRedaTablice.php',
       type: 'POST',
       dataType: 'json',
       data: { idPorukeIzTablice: idPoruke },
