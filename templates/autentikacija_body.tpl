@@ -1,7 +1,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="//code.jquery.com/jquery-1.12.4.js"></script>
     <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="https://www.google.com/recaptcha/api.js" ></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script src="https://www.google.com/recaptcha/enterprise.js?render=6LeZFiwmAAAAAAj9RoXSYUJUnXXpz5ZOITLEvoZ4"></script>
 <main>
       <div class="autentikacijaclass" style="height: 30rem;">
@@ -35,8 +35,8 @@
                   <option value="zensko">Žensko</option>
                 </select>
                 <br />
-                <label for="lozinka" {$lozinkaboja}>Lozinka: </label>
-                <input type="password" id="lozinka" name="lozinka" pattern=".{5}" placeholder="lozinka" required="required" /><br />
+                <label for="lozinka" {$lozinkaboja} id="lozinkalabelregistracija">Lozinka: </label>
+                <input type="password" id="lozinka" name="lozinka" pattern=".{5}" placeholder="lozinka" required="required" onblur="checkLozinke()"/><br />
                 {if isset($lozinkaprovjera) && strlen($lozinkaprovjera)>2}
                 <label style="color:red; font-size:15px;">{$lozinkaprovjera}<label>
                 <br />
@@ -47,7 +47,7 @@
                 <label style="color:red; font-size:15px;">{$potvrdaprovjera}<label>
                 <br />
                 {/if}
-                <div class="g-recaptcha" data-sitekey="6Ld4OywmAAAAAHBF4QmpTvPmHEEybGFuG15T0BXc"></div>
+                <div class="g-recaptcha" data-sitekey="6Ld4OywmAAAAAHBF4QmpTvPmHEEybGFuG15T0BXc" data-callback="captchakliknuta" data-expired-callback="captchakliknuta"></div>
                 <input id="submit" type="submit" value="Registriraj se " name="registracijaButton" disabled />
                 <p id="porukaPogreskeJS" style='color: red; text-align: center;'></p>
                 {if isset($poruka_registracija)}
@@ -77,6 +77,11 @@
     </main>
 
 <script type="text/javascript">
+
+  function captchakliknuta(){
+provjeraSvihParametara();
+}
+
   let poruka = document.getElementById('porukaPogreskeJS');
   let submitButton = document.getElementById('submit');
   let imeprezimevaljano = false;
@@ -154,7 +159,7 @@
 
   function isKorisnikValid(korisnik) {
         const znakovi = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        if (korisnik.length > 20) {
+        if (korisnik.length > 20 || korisnik.length < 5) {
           return false;
         }
         for (let i = 0; i < korisnik.length; i++) {
@@ -220,6 +225,36 @@ function isEmailValid(email) {
       }
     }
 
+    function checkLozinke(){
+      let lozinka = document.getElementById('lozinka').value;
+      console.log(lozinka);
+      if (lozinka.length <= 5 || lozinka.length >= 30) {
+      document.getElementById('lozinkalabelregistracija').style.color="red";
+      document.getElementById('lozinka').style.color="red";
+      poruka.innerHTML = "Lozinka mora sadržavati minimalno 5 znakova i maksimalno 30 znakova";
+      lozinkavaljana = false;
+      }else{
+      let imabroj = false;
+      for (var i = 0; i < lozinka.length; i++) {
+        if (!isNaN(parseInt(lozinka[i]))) {
+          imabroj = true;
+          break;
+        }
+      }
+      if(!imabroj){
+      document.getElementById('lozinkalabelregistracija').style.color="red";
+      document.getElementById('lozinka').style.color="red";
+      poruka.innerHTML = "Lozinka mora sadržavati barem 1 broj";
+      lozinkavaljana = false;
+      }else{
+        document.getElementById('lozinkalabelregistracija').style.color="black";
+        document.getElementById('lozinka').style.color="black";
+        poruka.innerHTML = "";
+        lozinkavaljana = true;
+      }
+      }
+    }
+
     function provjeraPotvrdeneLozinke(){
       let lozinka = document.getElementById('lozinka').value;
       let potvrdalozinke = document.getElementById('potvrdalozinke').value;
@@ -249,11 +284,10 @@ function isEmailValid(email) {
       console.log("lozinka - ",lozinkavaljana);
       console.log("potvrdalozinke - ",potvrdalozinkevaljana);
       console.log("captcha - ",captchavaljana);
-      if(imeprezimevaljano === true && usernamevaljan===true && emailadresavaljana === true && lozinkavaljana === true && potvrdalozinkevaljana === true && captchavaljana === true){
+      if(imeprezimevaljano === true && captchavaljana === true && usernamevaljan===true && emailadresavaljana === true && lozinkavaljana === true && potvrdalozinkevaljana === true){
         submitButton.disabled = false;
       }else{
         submitButton.disabled = true;
       }
     }
-
 </script>

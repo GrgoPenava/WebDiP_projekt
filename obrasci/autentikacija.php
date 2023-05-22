@@ -52,7 +52,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['prijavaButton'])) {
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['registracijaButton']) && isset($_POST['g-recaptcha-response'])) { {
     $captchaResponse = $_POST['g-recaptcha-response'];
-    var_dump("CAPTCHA -", $captchaResponse);
     $imeprezime = $_POST['imeprezime'];
     $username = $_POST['username'];
     $email = $_POST['email'];
@@ -88,6 +87,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['registracijaButton']) 
     } else {
       $smarty->assign('lozinkaboja', "style='color: black;'");
     }
+
+    $username_ispravan = username_provjera($username);
+    if ($username_ispravan == false) {
+      $poruka_registracija = "Neuspješna registracija, pokušajte ponovo!";
+      $smarty->assign('usernameboja', "style='color: red;'");
+      $smarty->assign('usernameprovjera', "Username smije sadržavati samo slova i brojeve, te mora imati minimalno 5 znakova i maksimalno 20.");
+    } else {
+      $smarty->assign('usernameboja', "style='color: black;'");
+    }
+
     if ($lozinka != $potvrdalozinke || !isset($potvrdalozinke) || strlen($potvrdalozinke) < 1) {
       $smarty->assign('potvrdiboja', "style='color: red;'");
       $smarty->assign('potvrdaprovjera', "Potvrđena lozinka nije unesena ili nije ista kao prethodna");
@@ -104,10 +113,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['registracijaButton']) 
       $poruka_registracija = "Niste uspješno riješili CAPTCHA provjeru!";
     }
 
-    if (empty($email) === false && empty($ime) === false && empty($prezime) === false && $lozinka_ispravna == true && $email_ispravan == true && empty($lozinka) === false &&  empty($lozinka_kriptirana) === false && empty($spol) === false && empty($lozinka) === false && empty($potvrdalozinke) === false && $lozinka == $potvrdalozinke && $rijesenacaptcha == true) {
-      $upit = "INSERT INTO korisnik (ime,prezime,username,lozinka,lozinka_sha256,email,spol,ID_uloga) VALUES ('$ime','$prezime','$username','$lozinka','$lozinka_kriptirana','$email','$spol',3)";
+    if (empty($email) === false && empty($ime) === false && empty($prezime) === false && $lozinka_ispravna == true && $username_ispravan == true && $email_ispravan == true && empty($lozinka) === false &&  empty($lozinka_kriptirana) === false && empty($spol) === false && empty($lozinka) === false && empty($potvrdalozinke) === false && $lozinka == $potvrdalozinke && $rijesenacaptcha == true) {
+      $aktivacijski_kod = uniqid();
+      $trenutnoVrijeme = date('Y-m-d H:i:s');
+      $upit = "INSERT INTO korisnik (ime,prezime,username,lozinka,lozinka_sha256,email,spol,ID_uloga,datum_registracije,aktivacijski_kod) VALUES ('$ime','$prezime','$username','$lozinka','$lozinka_kriptirana','$email','$spol',3,'$trenutnoVrijeme','$aktivacijski_kod')";
       $rezultat = $veza->selectDB($upit);
       if ($rezultat) {
+        $to = $email;
+        $subject = "Aktivacija profila";
+        $message = '
+        Uspješno ste se registrirali!
+        Aktivirajte svoj korisnički račun klikom na poveznicu ispod gdje morate unijeti svoju email adresu i aktivacijski kod.
+        Email: ' . $email . '
+        Aktivacijski kod: ' . $aktivacijski_kod . '
+        Kliknite link ispod za aktivaciju: https://barka.foi.hr/WebDiP/2022_projekti/WebDiP2022x033/obrasci/aktivacija_racuna.php
+        Ugodan ostatak dana.
+        ';
+        $headers = "From : gpenava@student.foi.hr";
+        if (mail($to, $subject, $message, $headers)) {
+          var_dump("Aktivacijski kod je poslan na vaš mail.");
+        } else {
+          var_dump("Aktivacijski kod nije moguće poslati");
+        }
         header("Location: ../index.php");
       } else {
         $poruka_registracija = "Neuspješna registracija, pokušajte ponovo!";
@@ -152,15 +179,18 @@ $smarty->display('../templates/podnozje.tpl');
 
 function lozinka_provjera($lozinka)
 {
-  if (strlen($lozinka) < 15 || strlen($lozinka) > 25 || !preg_match('/[A-Z]/', $lozinka) || !preg_match('/[a-z]/', $lozinka) || !preg_match('/[0-9]/', $lozinka) || strpos($lozinka, ' ') !== false) {
+  if (strlen($lozinka) <= 5 || strlen($lozinka) >= 30 || !preg_match('/[0-9]/', $lozinka)) {
     return false;
   } else {
-    $specijalniZnakovi = array('=', '*', '/', '%');
-    foreach ($specijalniZnakovi as $znak) {
-      if (strpos($lozinka, $znak) === 0 || substr($lozinka, -1) === $znak) {
-        return false;
-      }
-    }
     return true;
+  }
+}
+
+function username_provjera($username)
+{
+  if (preg_match('/^[a-zA-Z0-9]{5,20}$/', $username)) {
+    return true;
+  } else {
+    return false;
   }
 }

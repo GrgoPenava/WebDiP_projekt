@@ -13,7 +13,6 @@
         {if isset($smarty.session.uloga)&& $smarty.session.uloga === 1}
             <a href="{$putanja}/obrasci/obrazac.php">Obrazac</a>
         {/if}
-        <a href="{$putanja}/plan.html">Plan</a>
         {if isset($smarty.session.uloga)}
             <a href='?odjava=da'><button type='button' class='odjava-button'>Odjava</button></a>
         {/if}

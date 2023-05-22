@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.0, created on 2023-05-22 14:26:55
+/* Smarty version 4.3.0, created on 2023-05-22 15:47:49
   from 'C:\xampp\htdocs\projekt\templates\autentikacija_body.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.0',
-  'unifunc' => 'content_646b5f8fda3e67_30867378',
+  'unifunc' => 'content_646b72857f7b23_80749064',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '118e97b756aa1efa16b3f3e4bb18f21efb36f578' => 
     array (
       0 => 'C:\\xampp\\htdocs\\projekt\\templates\\autentikacija_body.tpl',
-      1 => 1684758404,
+      1 => 1684763267,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_646b5f8fda3e67_30867378 (Smarty_Internal_Template $_smarty_tpl) {
+function content_646b72857f7b23_80749064 (Smarty_Internal_Template $_smarty_tpl) {
 echo '<script'; ?>
  src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"><?php echo '</script'; ?>
 >
@@ -31,7 +31,7 @@ echo '<script'; ?>
  src="//code.jquery.com/ui/1.12.1/jquery-ui.js"><?php echo '</script'; ?>
 >
     <?php echo '<script'; ?>
- src="https://www.google.com/recaptcha/api.js" ><?php echo '</script'; ?>
+ src="https://www.google.com/recaptcha/api.js" async defer><?php echo '</script'; ?>
 >
     <?php echo '<script'; ?>
  src="https://www.google.com/recaptcha/enterprise.js?render=6LeZFiwmAAAAAAj9RoXSYUJUnXXpz5ZOITLEvoZ4"><?php echo '</script'; ?>
@@ -75,9 +75,9 @@ echo '<script'; ?>
                 </select>
                 <br />
                 <label for="lozinka" <?php echo $_smarty_tpl->tpl_vars['lozinkaboja']->value;?>
->Lozinka: </label>
+ id="lozinkalabelregistracija">Lozinka: </label>
                 <input type="password" id="lozinka" name="lozinka" pattern=".<?php echo 5;?>
-" placeholder="lozinka" required="required" /><br />
+" placeholder="lozinka" required="required" onblur="checkLozinke()"/><br />
                 <?php if ((isset($_smarty_tpl->tpl_vars['lozinkaprovjera']->value)) && strlen($_smarty_tpl->tpl_vars['lozinkaprovjera']->value) > 2) {?>
                 <label style="color:red; font-size:15px;"><?php echo $_smarty_tpl->tpl_vars['lozinkaprovjera']->value;?>
 <label>
@@ -92,7 +92,7 @@ echo '<script'; ?>
 <label>
                 <br />
                 <?php }?>
-                <div class="g-recaptcha" data-sitekey="6Ld4OywmAAAAAHBF4QmpTvPmHEEybGFuG15T0BXc"></div>
+                <div class="g-recaptcha" data-sitekey="6Ld4OywmAAAAAHBF4QmpTvPmHEEybGFuG15T0BXc" data-callback="captchakliknuta" data-expired-callback="captchakliknuta"></div>
                 <input id="submit" type="submit" value="Registriraj se " name="registracijaButton" disabled />
                 <p id="porukaPogreskeJS" style='color: red; text-align: center;'></p>
                 <?php if ((isset($_smarty_tpl->tpl_vars['poruka_registracija']->value))) {?>
@@ -125,6 +125,11 @@ echo '<script'; ?>
 
 <?php echo '<script'; ?>
  type="text/javascript">
+
+  function captchakliknuta(){
+provjeraSvihParametara();
+}
+
   let poruka = document.getElementById('porukaPogreskeJS');
   let submitButton = document.getElementById('submit');
   let imeprezimevaljano = false;
@@ -202,7 +207,7 @@ echo '<script'; ?>
 
   function isKorisnikValid(korisnik) {
         const znakovi = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        if (korisnik.length > 20) {
+        if (korisnik.length > 20 || korisnik.length < 5) {
           return false;
         }
         for (let i = 0; i < korisnik.length; i++) {
@@ -268,6 +273,36 @@ function isEmailValid(email) {
       }
     }
 
+    function checkLozinke(){
+      let lozinka = document.getElementById('lozinka').value;
+      console.log(lozinka);
+      if (lozinka.length <= 5 || lozinka.length >= 30) {
+      document.getElementById('lozinkalabelregistracija').style.color="red";
+      document.getElementById('lozinka').style.color="red";
+      poruka.innerHTML = "Lozinka mora sadržavati minimalno 5 znakova i maksimalno 30 znakova";
+      lozinkavaljana = false;
+      }else{
+      let imabroj = false;
+      for (var i = 0; i < lozinka.length; i++) {
+        if (!isNaN(parseInt(lozinka[i]))) {
+          imabroj = true;
+          break;
+        }
+      }
+      if(!imabroj){
+      document.getElementById('lozinkalabelregistracija').style.color="red";
+      document.getElementById('lozinka').style.color="red";
+      poruka.innerHTML = "Lozinka mora sadržavati barem 1 broj";
+      lozinkavaljana = false;
+      }else{
+        document.getElementById('lozinkalabelregistracija').style.color="black";
+        document.getElementById('lozinka').style.color="black";
+        poruka.innerHTML = "";
+        lozinkavaljana = true;
+      }
+      }
+    }
+
     function provjeraPotvrdeneLozinke(){
       let lozinka = document.getElementById('lozinka').value;
       let potvrdalozinke = document.getElementById('potvrdalozinke').value;
@@ -297,13 +332,12 @@ function isEmailValid(email) {
       console.log("lozinka - ",lozinkavaljana);
       console.log("potvrdalozinke - ",potvrdalozinkevaljana);
       console.log("captcha - ",captchavaljana);
-      if(imeprezimevaljano === true && usernamevaljan===true && emailadresavaljana === true && lozinkavaljana === true && potvrdalozinkevaljana === true && captchavaljana === true){
+      if(imeprezimevaljano === true && captchavaljana === true && usernamevaljan===true && emailadresavaljana === true && lozinkavaljana === true && potvrdalozinkevaljana === true){
         submitButton.disabled = false;
       }else{
         submitButton.disabled = true;
       }
     }
-
 <?php echo '</script'; ?>
 ><?php }
 }
