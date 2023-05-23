@@ -59,13 +59,21 @@
             <div class="prijava">
               <form id="form3" method="POST" name="form3" novalidate>
                 <label for="email">Email adresa: </label>
-                <input type="email" id="email2" name="email" size="30" placeholder="naziv@nazivposluzitelja.xxx" required="required" "/><br />
+                {if isset($zadnja_prijava)}
+                <input type="email" id="email2" name="email" size="30" placeholder="naziv@nazivposluzitelja.xxx" required="required" value="{$zadnja_prijava}"/><br />
+                {else}
+                <input type="email" id="email2" name="email" size="30" placeholder="naziv@nazivposluzitelja.xxx" required="required"/><br />
+                {/if}
                 <label for="lozinka">Lozinka: </label>
                 <input type="password" id="lozinka2" name="lozinka" size="30" placeholder="lozinka" required="required" /><br />
+                <input type="checkbox" id="zapamti" name="zapamti"  />
+                <label for="Zapamtime" style="font-size:medium;">Zapamti me</label><br />
+                <p onclick="zaboravioSamLozinku()" style="font-size:medium; cursor:pointer; text-decoration: underline; text-align:center;">Zaboravio sam lozinku</p>
                 <input id="submit2" type="submit" value="Prijavi se " name="prijavaButton" />
                 {if isset($poruka)} 
                   <p style='color: red'>{$poruka}</p>
                 {/if}
+                <p id="zaboravljenalozinkaporuka" style='color: red'></p>
                 <p style="font-size: small;">Administrator = gpenava@student.foi.hr - grgopenava</p>
                 <p style="font-size: small;">Moderator = markomarkovic@gmail.com - markomarkovic</p>
                 <p style="font-size: small;">Korisnik = anaanic@gmail.com - anaanic0</p>
@@ -77,6 +85,24 @@
     </main>
 
 <script type="text/javascript">
+
+function zaboravioSamLozinku(){
+  let email = document.getElementById('email2').value;
+  let zaboravljenalozinkaporuka = document.getElementById('zaboravljenalozinkaporuka');
+    $.ajax({
+                url: '../privatno/zaboravljenalozinka.php',
+                type: 'POST',
+                dataType: 'json',
+                data: { email: email },
+                success:function(result){
+                if(result.pronaden_email === true){
+                  zaboravljenalozinkaporuka.innerHTML = "Poslana vam je nova lozinka na email!";
+                }else{
+                  zaboravljenalozinkaporuka.innerHTML = "Unijeli ste pogrešan email!";
+                }
+            }
+            });
+}
 
   function captchakliknuta(){
 provjeraSvihParametara();
@@ -144,7 +170,7 @@ provjeraSvihParametara();
   function checkUsername() {
     let username = document.getElementById('username').value;
     $.ajax({
-                url: '../privatnoo/username_provjera.php',
+                url: '../privatno/username_provjera.php',
                 type: 'POST',
                 dataType: 'json',
                 data: { username: username },

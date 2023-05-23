@@ -1,5 +1,5 @@
 <?php
-include '../privatnoo/funkcije.php';
+include '../privatno/funkcije.php';
 require '../vanjske_biblioteke/smarty-4.3.0/libs/Smarty.class.php';
 $veza = new Baza();
 $veza->spojiDb();

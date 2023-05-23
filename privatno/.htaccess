@@ -1,0 +1,4 @@
+AuthType Basic
+AuthName "Password Protected Area"
+AuthUserFile /var/www/WebDiP/2022_projekti/WebDiP2022x033/privatno/.htpasswd
+Require valid-user

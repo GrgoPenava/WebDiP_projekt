@@ -1,5 +1,5 @@
 <?php
-include '../privatnoo/funkcije.php';
+include '../privatno/funkcije.php';
 require '../vanjske_biblioteke/smarty-4.3.0/libs/Smarty.class.php';
 $veza = new Baza();
 $veza->spojiDb();
@@ -17,31 +17,54 @@ $smarty->assign('emailprovjera', "");
 $smarty->assign('lozinkaprovjera', "");
 $smarty->assign('potvrdaprovjera', "");
 
-/* $to = "grgopenava00@gmail.com";
-$subject = "Testna poruka";
-$message = "Ovo je testna poruka.";
-$headers = "From: pošiljatelj@example.com\r\n";
-$headers .= "Reply-To: pošiljatelj@example.com\r\n";
-$headers .= "CC: kopija@example.com\r\n";
-$headers .= "BCC: skrivenakopija@example.com\r\n";
+if (!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] !== 'on') {
+  $redirectUrl = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+  header('Location: ' . $redirectUrl);
+  exit();
+}
 
-if (mail($to, $subject, $message, $headers)) {
-  echo "E-pošta je uspješno poslana.";
-} else {
-  echo "Pojavila se pogreška prilikom slanja e-pošte.";
-} */
+if (isset($_COOKIE['zadnja_prijava'])) {
+  $kolacic = $_COOKIE['zadnja_prijava'];
+  $zadnjaprijavaVrijednost = urldecode($kolacic);
+  $smarty->assign('zadnja_prijava', $zadnjaprijavaVrijednost);
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['prijavaButton'])) {
   $email = $_POST['email'];
   $lozinka = $_POST['lozinka'];
+  if (isset($_POST['zapamti'])) {
+    $zapamti = $_POST['zapamti'];
+  }
+  @$zapamti = $_POST['zapamti'];
   if (empty($email) === false && empty($lozinka) === false) {
     $upit = "SELECT * FROM korisnik WHERE email='$email' AND lozinka='$lozinka'";
     $rezultat = $veza->selectDB($upit);
     if ($rezultat->num_rows > 0) {
       while ($redak = $rezultat->fetch_assoc()) {
-        Sesija::kreirajKorisnika($redak["email"], $redak["ID_uloga"]);
+        if ($redak["blokiran"] == 0) {
+          Sesija::kreirajKorisnika($redak["email"], $redak["ID_uloga"]);
+          $upit2 = "UPDATE korisnik SET broj_neuspjesnih_prijava = 0 WHERE email='$email' AND lozinka='$lozinka'";
+          $rezultat2 = $veza->selectDB($upit2);
+          if (isset($zapamti)) {
+            setcookie("zadnja_prijava", $email, false, '/', false);
+          }
+        } else {
+          $poruka = "Vaš račun je zaključan. Kontaktirajte administratora!";
+        }
       }
     } else {
+      $upitjedan = "UPDATE korisnik SET broj_neuspjesnih_prijava = broj_neuspjesnih_prijava+1 WHERE email='$email'";
+      $rezultatjedan = $veza->selectDB($upitjedan);
+      $upitdohvacanjebrojaca = "SELECT broj_neuspjesnih_prijava FROM korisnik WHERE email='$email'";
+      $rezultatdohvacanjebrojaca = $veza->selectDB($upitdohvacanjebrojaca);
+      if ($rezultatdohvacanjebrojaca->num_rows > 0) {
+        while ($redakbrojaca = $rezultatdohvacanjebrojaca->fetch_assoc()) {
+          if ($redakbrojaca["broj_neuspjesnih_prijava"] >= 5) {
+            $upitblokiraj = "UPDATE korisnik SET blokiran = 1 WHERE email='$email'";
+            $rezultatblokiraj = $veza->selectDB($upitblokiraj);
+          }
+        }
+      }
       $poruka = "Neuspješna prijava, pokušajte ponovo!";
     }
   } else {

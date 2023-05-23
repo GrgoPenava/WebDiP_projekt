@@ -106,7 +106,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array(
     function checkEmail() {
     let email = document.getElementById('email').value;
     $.ajax({
-    url: '../privatnoo/email_provjera.php',
+    url: '../privatno/email_provjera.php',
     type: 'POST',
     dataType: 'json',
     data: { email: email },

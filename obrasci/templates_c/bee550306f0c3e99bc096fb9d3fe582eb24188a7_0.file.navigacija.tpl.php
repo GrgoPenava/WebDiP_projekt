@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.0, created on 2023-05-21 20:32:38
+/* Smarty version 4.3.0, created on 2023-05-23 09:43:30
   from 'C:\xampp\htdocs\projekt\templates\navigacija.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.0',
-  'unifunc' => 'content_646a63c6d70872_37963466',
+  'unifunc' => 'content_646c6ea2222c29_05926882',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'bee550306f0c3e99bc096fb9d3fe582eb24188a7' => 
     array (
       0 => 'C:\\xampp\\htdocs\\projekt\\templates\\navigacija.tpl',
-      1 => 1684434352,
+      1 => 1684782409,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_646a63c6d70872_37963466 (Smarty_Internal_Template $_smarty_tpl) {
+function content_646c6ea2222c29_05926882 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="izbornik"><nav>
         <a href="<?php echo $_smarty_tpl->tpl_vars['putanja']->value;?>
 /index.php">Početna stranica</a>
@@ -43,8 +43,6 @@ function content_646a63c6d70872_37963466 (Smarty_Internal_Template $_smarty_tpl)
             <a href="<?php echo $_smarty_tpl->tpl_vars['putanja']->value;?>
 /obrasci/obrazac.php">Obrazac</a>
         <?php }?>
-        <a href="<?php echo $_smarty_tpl->tpl_vars['putanja']->value;?>
-/plan.html">Plan</a>
         <?php if ((isset($_SESSION['uloga']))) {?>
             <a href='?odjava=da'><button type='button' class='odjava-button'>Odjava</button></a>
         <?php }?>
