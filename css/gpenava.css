@@ -318,6 +318,12 @@ li{
   justify-content: center;
 }
 
+#formDatum{
+  display: flex;
+  align-items: center;
+  gap:1rem;
+}
+
 .prijava{
   border: 2px solid #161616;
   background-color: #cccccc83;
@@ -341,6 +347,19 @@ li{
   max-width: 400px;
 }
 
+.datumform{
+  display: flex;
+  flex-direction: column;
+  padding-top: 1rem;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 400px;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+  font-size: 20px;
+}
+
 #submit{
   margin-top: 1rem;
   margin-left: 8rem;
@@ -361,6 +380,19 @@ li{
 }
 
 #submit2:hover{
+  background-color: #a4cce7;
+  color: black;
+  font-weight: 600;
+}
+
+#datumButton{
+  border-radius: 5px;
+  background-color: #6fb3e0;
+  color: black;
+  font-size: medium;
+}
+
+#datumButton:hover{
   background-color: #a4cce7;
   color: black;
   font-weight: 600;
@@ -670,6 +702,7 @@ th{
 }
 
 .card {
+  background-color: #f1f7ff;
   width: 100%;
   border: 1px solid #ccc;
   border-radius: 4px;

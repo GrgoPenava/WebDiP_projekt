@@ -9,7 +9,9 @@ if (empty($email) === false) {
     $rezultat = $veza->selectDB($upit);
     if ($rezultat->num_rows > 0) {
         $lozinka = uniqid("Zz0");
-        $upitpostavilozinku = "UPDATE korisnik SET lozinka = '$lozinka' WHERE email = '$email'";
+        $dinamicka_sol = 'asFgzCrfTSrfuu';
+        $lozinka_kriptirana = hash('sha256', $lozinka . $dinamicka_sol);
+        $upitpostavilozinku = "UPDATE korisnik SET lozinka = '$lozinka', lozinka_sha256 = '$lozinka_kriptirana' WHERE email = '$email'";
         $rezultatpostavilozinku = $veza->selectDB($upitpostavilozinku);
 
         $to = $email;

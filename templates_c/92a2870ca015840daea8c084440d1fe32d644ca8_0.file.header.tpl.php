@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.0, created on 2023-05-21 16:57:21
+/* Smarty version 4.3.0, created on 2023-05-23 19:00:50
   from 'C:\xampp\htdocs\projekt\templates\header.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.0',
-  'unifunc' => 'content_646a3151e8baf1_36830202',
+  'unifunc' => 'content_646cf142c691a2_49876773',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '92a2870ca015840daea8c084440d1fe32d644ca8' => 
     array (
       0 => 'C:\\xampp\\htdocs\\projekt\\templates\\header.tpl',
-      1 => 1684440810,
+      1 => 1684861249,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_646a3151e8baf1_36830202 (Smarty_Internal_Template $_smarty_tpl) {
+function content_646cf142c691a2_49876773 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -46,11 +46,11 @@ function content_646a3151e8baf1_36830202 (Smarty_Internal_Template $_smarty_tpl)
             <a href="<?php echo $_smarty_tpl->tpl_vars['putanja']->value;?>
 /index.php">
                 <img src="<?php echo $_smarty_tpl->tpl_vars['putanja']->value;?>
-/multimedija/bmw-logo2.png" alt="BMW logo" class="bmw-logo" />
+/multimedija/shop-logo.png" alt="Shop logo" class="bmw-logo" />
             </a>
             <a id="bmwTitle" href="<?php echo $_smarty_tpl->tpl_vars['putanja']->value;?>
 /index.php">
-                <h1>BMW</h1>
+                <h1>SHOP</h1>
             </a>
             <form action="" method="POST" id="jeziciForm">
                 <select name="jezici" id="jezici" onchange="this.form.submit()">

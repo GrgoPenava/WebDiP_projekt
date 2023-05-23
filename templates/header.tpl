@@ -18,10 +18,10 @@
     <header>
         <div class="gornjiDioHeadera">
             <a href="{$putanja}/index.php">
-                <img src="{$putanja}/multimedija/bmw-logo2.png" alt="BMW logo" class="bmw-logo" />
+                <img src="{$putanja}/multimedija/shop-logo.png" alt="Shop logo" class="bmw-logo" />
             </a>
             <a id="bmwTitle" href="{$putanja}/index.php">
-                <h1>BMW</h1>
+                <h1>SHOP</h1>
             </a>
             <form action="" method="POST" id="jeziciForm">
                 <select name="jezici" id="jezici" onchange="this.form.submit()">
