@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.0, created on 2023-05-23 18:28:04
+/* Smarty version 4.3.0, created on 2023-05-23 20:39:14
   from 'C:\xampp\htdocs\projekt\templates\korisnici_body.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.0',
-  'unifunc' => 'content_646ce99475cf84_73942387',
+  'unifunc' => 'content_646d0852308278_48007544',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '55cb4540834876f9c6b01e654e1645927a8cad80' => 
     array (
       0 => 'C:\\xampp\\htdocs\\projekt\\templates\\korisnici_body.tpl',
-      1 => 1684859283,
+      1 => 1684867153,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_646ce99475cf84_73942387 (Smarty_Internal_Template $_smarty_tpl) {
+function content_646d0852308278_48007544 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="datumform" style="padding-bottom:2rem;">
               <form id="formDatum" method="POST" name="form3" novalidate>
               <div style="display:flex; align-items:center; gap:0.2rem;">
@@ -29,18 +29,14 @@ function content_646ce99475cf84_73942387 (Smarty_Internal_Template $_smarty_tpl)
               </div>
                 <input id="usernameButton" type="submit" value="Filtriraj" name="usernameButton" style="align-items:center"/>
               </form>
-              <div style="display:flex; gap:0.2rem;">
-              <form id="azForm" method="POST" name="form4" novalidate>
-                <input id="usernameButton" type="submit" value="A-Z" name="azbutton" style="align-items:center"/>
-              </form>
-              <form id="zaForm" method="POST" name="form5" novalidate>
-                <input id="usernameButton" type="submit" value="Z-A" name="zabutton" style="align-items:center"/>
-              </form>
-              </div>
   </div>
 <?php if ($_smarty_tpl->tpl_vars['korisnici']->value) {?>
+<div style="display:flex; align-items:center; justify-content:center; gap:0.2rem; padding-bottom:2rem;">
+<button id="usernameButton" style="align-items:center; cursor:pointer;" onclick="sortirajTablicuAZ()">A-Z</button>
+<button id="usernameButton" style="align-items:center; cursor:pointer;" onclick="sortirajTablicuZA()">Z-A</button>
+</div>
 <div style="display:flex; justify-content: center;">
-<table>
+<table id="mojaTablica">
               <thead>
                 <tr>
                 <th>Email</th>
@@ -87,6 +83,43 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 
 <?php echo '<script'; ?>
  type="text/javascript">
+  function sortirajTablicuAZ() {
+    var tabl, redovi, promjena, i, x, y;
+    tabl = document.getElementById("mojaTablica");
+    promjena = true;
+    while (promjena) {
+      promjena = false;
+      redovi = tabl.rows;
+      for (i = 1; i < (redovi.length - 1); i++) {
+        x = redovi[i].getElementsByTagName("TD")[1];
+        y = redovi[i + 1].getElementsByTagName("TD")[1];
+        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+          redovi[i].parentNode.insertBefore(redovi[i + 1], redovi[i]);
+          promjena = true;
+          break;
+        }
+      }
+    }
+  }
+
+  function sortirajTablicuZA() {
+  var tabl, redovi, promjena, i, x, y;
+  tabl = document.getElementById("mojaTablica");
+  promjena = true;
+  while (promjena) {
+    promjena = false;
+    redovi = tabl.rows;
+    for (i = 1; i < (redovi.length - 1); i++) {
+      x = redovi[i].getElementsByTagName("TD")[1];
+      y = redovi[i + 1].getElementsByTagName("TD")[1];
+      if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+        redovi[i].parentNode.insertBefore(redovi[i + 1], redovi[i]);
+        promjena = true;
+        break;
+      }
+    }
+  }
+}
 <?php echo '</script'; ?>
 ><?php }
 }

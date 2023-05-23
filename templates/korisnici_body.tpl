@@ -6,18 +6,14 @@
               </div>
                 <input id="usernameButton" type="submit" value="Filtriraj" name="usernameButton" style="align-items:center"/>
               </form>
-              <div style="display:flex; gap:0.2rem;">
-              <form id="azForm" method="POST" name="form4" novalidate>
-                <input id="usernameButton" type="submit" value="A-Z" name="azbutton" style="align-items:center"/>
-              </form>
-              <form id="zaForm" method="POST" name="form5" novalidate>
-                <input id="usernameButton" type="submit" value="Z-A" name="zabutton" style="align-items:center"/>
-              </form>
-              </div>
   </div>
 {if $korisnici}
+<div style="display:flex; align-items:center; justify-content:center; gap:0.2rem; padding-bottom:2rem;">
+<button id="usernameButton" style="align-items:center; cursor:pointer;" onclick="sortirajTablicuAZ()">A-Z</button>
+<button id="usernameButton" style="align-items:center; cursor:pointer;" onclick="sortirajTablicuZA()">Z-A</button>
+</div>
 <div style="display:flex; justify-content: center;">
-<table>
+<table id="mojaTablica">
               <thead>
                 <tr>
                 <th>Email</th>
@@ -51,4 +47,41 @@
 <div style="min-height:29rem; min-width:98vw;"></div>
 
 <script type="text/javascript">
+  function sortirajTablicuAZ() {
+    var tabl, redovi, promjena, i, x, y;
+    tabl = document.getElementById("mojaTablica");
+    promjena = true;
+    while (promjena) {
+      promjena = false;
+      redovi = tabl.rows;
+      for (i = 1; i < (redovi.length - 1); i++) {
+        x = redovi[i].getElementsByTagName("TD")[1];
+        y = redovi[i + 1].getElementsByTagName("TD")[1];
+        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+          redovi[i].parentNode.insertBefore(redovi[i + 1], redovi[i]);
+          promjena = true;
+          break;
+        }
+      }
+    }
+  }
+
+  function sortirajTablicuZA() {
+  var tabl, redovi, promjena, i, x, y;
+  tabl = document.getElementById("mojaTablica");
+  promjena = true;
+  while (promjena) {
+    promjena = false;
+    redovi = tabl.rows;
+    for (i = 1; i < (redovi.length - 1); i++) {
+      x = redovi[i].getElementsByTagName("TD")[1];
+      y = redovi[i + 1].getElementsByTagName("TD")[1];
+      if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+        redovi[i].parentNode.insertBefore(redovi[i + 1], redovi[i]);
+        promjena = true;
+        break;
+      }
+    }
+  }
+}
 </script>

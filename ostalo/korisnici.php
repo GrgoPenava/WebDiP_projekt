@@ -5,11 +5,6 @@ require '../vanjske_biblioteke/smarty-4.3.0/libs/Smarty.class.php';
 $veza = new Baza();
 $veza->spojiDb();
 $putanja = dirname(dirname($_SERVER['REQUEST_URI']));
-if (!isset($_SESSION["uloga"])) {
-  Sesija::obrisiSesiju();
-  header("Location: ../index.php");
-  exit();
-}
 $smarty = new Smarty();
 if (isset($_POST['jezici'])) {
   $odabraniJezik = $_POST['jezici'];
@@ -75,38 +70,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['usernameButton'])) {
   }
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['azbutton'])) {
-  $upit = "SELECT * from korisnik WHERE ID_profil IS NOT NULL";
-  $rezultat = $veza->selectDB($upit);
-  $korisnici = array();
-  if ($rezultat->num_rows > 0) {
-    while ($redak = $rezultat->fetch_assoc()) {
-      $korisnici[] = $redak;
-    }
-  }
-  $usernames = array_column($korisnici, 'username');
-  array_multisort($usernames, SORT_ASC, $korisnici);
-  $brojZapisa = count($korisnici);
-  $smarty->assign('korisnici', $korisnici);
-  $smarty->assign('brojacZapisa', $brojZapisa);
-}
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['zabutton'])) {
-  $upit = "SELECT * from korisnik WHERE ID_profil IS NOT NULL";
-  $rezultat = $veza->selectDB($upit);
-  $korisnici = array();
-  if ($rezultat->num_rows > 0) {
-    while ($redak = $rezultat->fetch_assoc()) {
-      $korisnici[] = $redak;
-    }
-  }
-  $usernames = array_column($korisnici, 'username');
-  array_multisort($usernames, SORT_DESC, $korisnici);
-  $brojZapisa = count($korisnici);
-  $smarty->assign('korisnici', $korisnici);
-  $smarty->assign('brojacZapisa', $brojZapisa);
-}
-
 $brojZapisa = count($korisnici);
 $smarty->assign('brojacZapisa', $brojZapisa);
 $smarty->assign('korisnici', $korisnici);
@@ -114,9 +77,6 @@ $smarty->assign('naslov', "Popis");
 $smarty->assign('putanja', $putanja);
 $smarty->display('../templates/header.tpl');
 if (isset($_SESSION["uloga"])) {
-  $smarty->assign('uloga', $_SESSION["uloga"]);
-} else {
-  $_SESSION['uloga'] = 5;
   $smarty->assign('uloga', $_SESSION["uloga"]);
 }
 $smarty->display('../templates/navigacija.tpl');
