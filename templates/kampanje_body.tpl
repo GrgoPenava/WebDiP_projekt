@@ -32,7 +32,7 @@
                 <p class="card-description">{$kampanja['datum_i_vrijeme_pocetka']} - {$kampanja['datum_i_vrijeme_zavrsetka']}</p>
                 <p class="card-description">Moderator: {$kampanja['ime']} {$kampanja['prezime']}</p>
                 {if isset($smarty.session.uloga)&& $smarty.session.uloga < 4}
-                <a href="#" class="card-button">Odaberi</a>
+                <a href="{$putanja}/proizvodi.php?kampanja={$kampanja['ID_kampanja']}" class="card-button">Odaberi</a>
                 {/if}
                 </div>
             </div>
@@ -57,7 +57,7 @@
                 <p class="card-description">{$kampanja['datum_i_vrijeme_pocetka']} - {$kampanja['datum_i_vrijeme_zavrsetka']}</p>
                 <p class="card-description">Moderator: {$kampanja['ime']} {$kampanja['prezime']}</p>
                 {if isset($smarty.session.uloga)&& $smarty.session.uloga < 4}
-                <a href="#" class="card-button">Odaberi</a>
+                <a href="{$putanja}/proizvodi.php?kampanja={$kampanja['ID_kampanja']}" class="card-button">Odaberi</a>
                 {/if}
                 </div>
             </div>
@@ -82,7 +82,7 @@
                 <p class="card-description">{$kampanja['datum_i_vrijeme_pocetka']} - {$kampanja['datum_i_vrijeme_zavrsetka']}</p>
                 <p class="card-description">Moderator: {$kampanja['ime']} {$kampanja['prezime']}</p>
                 {if isset($smarty.session.uloga)&& $smarty.session.uloga < 4}
-                <a href="#" class="card-button">Odaberi</a>
+                <a href="{$putanja}/proizvodi.php?kampanja={$kampanja['ID_kampanja']}" class="card-button">Odaberi</a>
                 {/if}
                 </div>
             </div>
@@ -107,7 +107,7 @@
                 <p class="card-description">{$kampanja['datum_i_vrijeme_pocetka']} - {$kampanja['datum_i_vrijeme_zavrsetka']}</p>
                 <p class="card-description">Moderator: {$kampanja['ime']} {$kampanja['prezime']}</p>
                 {if isset($smarty.session.uloga)&& $smarty.session.uloga < 4}
-                <a href="#" class="card-button">Odaberi</a>
+                <a href="{$putanja}/proizvodi.php?kampanja={$kampanja['ID_kampanja']}" class="card-button">Odaberi</a>
                 {/if}
                 </div>
             </div>

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.0, created on 2023-05-23 19:06:10
+/* Smarty version 4.3.0, created on 2023-05-24 18:03:28
   from 'C:\xampp\htdocs\projekt\templates\kampanje_body.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.0',
-  'unifunc' => 'content_646cf2829d10e8_74872361',
+  'unifunc' => 'content_646e3550a195e1_10562446',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5f460d68273937fdb930078d98b3b6c8f707f971' => 
     array (
       0 => 'C:\\xampp\\htdocs\\projekt\\templates\\kampanje_body.tpl',
-      1 => 1684861569,
+      1 => 1684944205,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_646cf2829d10e8_74872361 (Smarty_Internal_Template $_smarty_tpl) {
+function content_646e3550a195e1_10562446 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="wrapper">
   <main>
     <section>
@@ -67,7 +67,9 @@ $_smarty_tpl->tpl_vars['kampanja']->do_else = false;
  <?php echo $_smarty_tpl->tpl_vars['kampanja']->value['prezime'];?>
 </p>
                 <?php if ((isset($_SESSION['uloga'])) && $_SESSION['uloga'] < 4) {?>
-                <a href="#" class="card-button">Odaberi</a>
+                <a href="<?php echo $_smarty_tpl->tpl_vars['putanja']->value;?>
+/proizvodi.php?kampanja=<?php echo $_smarty_tpl->tpl_vars['kampanja']->value['ID_kampanja'];?>
+" class="card-button">Odaberi</a>
                 <?php }?>
                 </div>
             </div>
@@ -106,7 +108,9 @@ $_smarty_tpl->tpl_vars['kampanja']->do_else = false;
  <?php echo $_smarty_tpl->tpl_vars['kampanja']->value['prezime'];?>
 </p>
                 <?php if ((isset($_SESSION['uloga'])) && $_SESSION['uloga'] < 4) {?>
-                <a href="#" class="card-button">Odaberi</a>
+                <a href="<?php echo $_smarty_tpl->tpl_vars['putanja']->value;?>
+/proizvodi.php?kampanja=<?php echo $_smarty_tpl->tpl_vars['kampanja']->value['ID_kampanja'];?>
+" class="card-button">Odaberi</a>
                 <?php }?>
                 </div>
             </div>
@@ -145,7 +149,9 @@ $_smarty_tpl->tpl_vars['kampanja']->do_else = false;
  <?php echo $_smarty_tpl->tpl_vars['kampanja']->value['prezime'];?>
 </p>
                 <?php if ((isset($_SESSION['uloga'])) && $_SESSION['uloga'] < 4) {?>
-                <a href="#" class="card-button">Odaberi</a>
+                <a href="<?php echo $_smarty_tpl->tpl_vars['putanja']->value;?>
+/proizvodi.php?kampanja=<?php echo $_smarty_tpl->tpl_vars['kampanja']->value['ID_kampanja'];?>
+" class="card-button">Odaberi</a>
                 <?php }?>
                 </div>
             </div>
@@ -184,7 +190,9 @@ $_smarty_tpl->tpl_vars['kampanja']->do_else = false;
  <?php echo $_smarty_tpl->tpl_vars['kampanja']->value['prezime'];?>
 </p>
                 <?php if ((isset($_SESSION['uloga'])) && $_SESSION['uloga'] < 4) {?>
-                <a href="#" class="card-button">Odaberi</a>
+                <a href="<?php echo $_smarty_tpl->tpl_vars['putanja']->value;?>
+/proizvodi.php?kampanja=<?php echo $_smarty_tpl->tpl_vars['kampanja']->value['ID_kampanja'];?>
+" class="card-button">Odaberi</a>
                 <?php }?>
                 </div>
             </div>

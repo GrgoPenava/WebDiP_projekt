@@ -4,16 +4,16 @@ class Baza
 {
 
     //lokalno
-    /* const server = "localhost";
+    const server = "localhost";
     const korisnik = "root";
     const lozinka = "";
-    const baza = "webdip2022x033"; */
+    const baza = "webdip2022x033";
 
     //barka
-    const server = "localhost";
+    /* const server = "localhost";
     const korisnik = "WebDiP2022x033";
     const lozinka = "admin_3fNA";
-    const baza = "WebDiP2022x033";
+    const baza = "WebDiP2022x033"; */
 
 
     private $veza = null;

@@ -31,10 +31,7 @@ $smarty->assign('putanja', $putanja);
 $smarty->display('./templates/header.tpl');
 if (isset($_SESSION["uloga"])) {
   $smarty->assign('uloga', $_SESSION["uloga"]);
-} /* else {
-  $_SESSION['uloga'] = 0;
-  $smarty->assign('uloga', $_SESSION["uloga"]);
-} */
+}
 
 $upit = "SELECT kampanja.*, korisnik.ime, korisnik.prezime, SUM(IFNULL(proizvod.kolicina, 0)) AS broj_proizvoda
 FROM kampanja
