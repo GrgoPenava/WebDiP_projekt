@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.0, created on 2023-05-23 20:48:52
+/* Smarty version 4.3.0, created on 2023-05-25 18:43:50
   from 'C:\xampp\htdocs\projekt\templates\navigacija.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.0',
-  'unifunc' => 'content_646d0a942c0643_20028277',
+  'unifunc' => 'content_646f9046b19226_84113451',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '2308c9a2e5648bbc3d742cc975289fc346b6a481' => 
     array (
       0 => 'C:\\xampp\\htdocs\\projekt\\templates\\navigacija.tpl',
-      1 => 1684867731,
+      1 => 1685033029,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_646d0a942c0643_20028277 (Smarty_Internal_Template $_smarty_tpl) {
+function content_646f9046b19226_84113451 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="izbornik"><nav>
         <a href="<?php echo $_smarty_tpl->tpl_vars['putanja']->value;?>
 /index.php">Kampanje</a>
@@ -29,17 +29,11 @@ function content_646d0a942c0643_20028277 (Smarty_Internal_Template $_smarty_tpl)
         <a href="<?php echo $_smarty_tpl->tpl_vars['putanja']->value;?>
 /obrasci/autentikacija.php">Autentikacija</a>
         <?php if ((isset($_SESSION['uloga'])) && $_SESSION['uloga'] < 4) {?>
-            <a href="<?php echo $_smarty_tpl->tpl_vars['putanja']->value;?>
-/obrasci/obrazac.php">Obrazac</a>
         <?php }?>
         <?php if ((isset($_SESSION['uloga'])) && $_SESSION['uloga'] < 3) {?>
-            <a href="<?php echo $_smarty_tpl->tpl_vars['putanja']->value;?>
-/ostalo/multimedija.php">Multimedija</a>
         <?php }?>
 
         <?php if ((isset($_SESSION['uloga'])) && $_SESSION['uloga'] === 1) {?>
-            <a href="<?php echo $_smarty_tpl->tpl_vars['putanja']->value;?>
-/obrasci/obrazac.php">Obrazac</a>
         <?php }?>
         <?php if ((isset($_SESSION['uloga'])) && $_SESSION['uloga'] < 4) {?>
             <a href="<?php echo $_smarty_tpl->tpl_vars['putanja']->value;?>

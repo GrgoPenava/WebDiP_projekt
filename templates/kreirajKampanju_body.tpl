@@ -32,21 +32,21 @@
             <input type="datetime-local" id="datum_i_vrijeme_zavrsetka" name="datum_i_vrijeme_zavrsetka" required="required" oninput="provjera()" />
             <br />
             <label for="Tip kampanje">Tip kampanje:</label>
-            <select id="tip_kampanje" name="tip_kampanje">
+            <select id="tip_kampanje" name="tip_kampanje" onchange="provjera()">
             {foreach $sviTipoviKampanje as $tip}
-                <option value="{$tip['ID_tip_kampanje']}" oninput="provjera()" >{$tip['naziv']}</option>
+                <option value="{$tip['ID_tip_kampanje']}">{$tip['naziv']}</option>
             {/foreach}
             </select>
             <br/>
             <label for="Tip kampanje">Proizvodi:</label>
-            <select id="proizvodi" name="proizvodi[]" multiple>
+            <select id="proizvodi" name="proizvodi[]" multiple  onchange="provjera()">
             {foreach $sviProizvodi as $proizvod}
-                <option value="{$proizvod['ID_proizvod']}" onselect="provjera()">{$proizvod['naziv']}</option>
+                <option value="{$proizvod['ID_proizvod']}">{$proizvod['naziv']}</option>
             {/foreach}
             </select>
             <br/>
             <input type="hidden" name="ID_korisnik" value="{$ID_korisnika}">
-            <input id="submit" name="kreirajKampanju" type="submit" value="Kreiraj"  />
+            <input disabled id="submit" name="kreirajKampanju" type="submit" value="Kreiraj"  />
           </fieldset>
         </form>
       </div>
@@ -56,16 +56,84 @@
 <script type="text/javascript">
 
 function provjera(){
-    console.log("asdsadaasda");
+  let kreiraj = document.getElementById('submit');
+    if(provjeriNaziv() && provjeriNazivEng() && provjeriOpis() && provjeriOpisEng() && provjeriDatumPocetak() && provjeriDatumZavrsetak() && provjeriTipKampanje() && provjeriProizvod()){
+      kreiraj.disabled = false;
+    }else{
+      kreiraj.disabled = true;
+    }
 }
 
-function provjeraSlike(){
-let datoteka = document.getElementById('slika').files[0].name;
-let splitaninaziv = datoteka.split(".");
-if(splitaninaziv[1] === "png"){
+function provjeriNaziv(){
+  let naziv = document.getElementById('naziv').value;
+  if(naziv.length>0){
     return true;
-}else{
+  }else{
     return false;
+  }
 }
+
+function provjeriNazivEng(){
+  let naziv = document.getElementById('naziv_eng').value;
+  if(naziv.length>0){
+    return true;
+  }else{
+    return false;
+  }
 }
+
+function provjeriOpis(){
+  let naziv = document.getElementById('opis').value;
+  if(naziv.length>0){
+    return true;
+  }else{
+    return false;
+  }
+}
+
+function provjeriOpisEng(){
+  let naziv = document.getElementById('opis_eng').value;
+  if(naziv.length>0){
+    return true;
+  }else{
+    return false;
+  }
+}
+
+function provjeriDatumPocetak(){
+  let naziv = document.getElementById('datum_i_vrijeme_pocetka').value;
+  if(naziv.length>0){
+    return true;
+  }else{
+    return false;
+  }
+}
+
+function provjeriDatumZavrsetak(){
+  let naziv = document.getElementById('datum_i_vrijeme_zavrsetka').value;
+  if(naziv.length>0){
+    return true;
+  }else{
+    return false;
+  }
+}
+
+function provjeriTipKampanje(){
+  let naziv = document.getElementById('tip_kampanje').value;
+  if(naziv.length>0){
+    return true;
+  }else{
+    return false;
+  }
+}
+
+function provjeriProizvod(){
+  let naziv = document.getElementById('proizvodi').value;
+  if(naziv.length>0){
+    return true;
+  }else{
+    return false;
+  }
+}
+
 </script>

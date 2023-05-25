@@ -30,10 +30,21 @@ $smarty->assign('naslov', "Početna stranica");
 $smarty->assign('putanja', $putanja);
 $smarty->display('./templates/header.tpl');
 $trenutniEmail = null;
+$trenutniKorisnik = array();
 if (isset($_SESSION["uloga"])) {
     $smarty->assign('uloga', $_SESSION["uloga"]);
     $trenutniEmail = $_SESSION["korisnik"];
+    $upitkorisnik = "SELECT * from korisnik WHERE email = '$trenutniEmail'";
+    $rezultatkorisnik = $veza->selectDB($upitkorisnik);
+    if ($rezultatkorisnik->num_rows > 0) {
+        while ($redakkorisnik = $rezultatkorisnik->fetch_assoc()) {
+            $trenutniKorisnik = $redakkorisnik;
+            $smarty->assign("IDTrenutnogKorisnika", $trenutniKorisnik["ID_korisnik"]);
+            $smarty->assign("UlogaTrenutnogKorisnika", $trenutniKorisnik["ID_uloga"]);
+        }
+    }
 }
+
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['kampanja'])) {
     $kampanja = $_GET["kampanja"];
     $upit = "SELECT p.*
@@ -56,6 +67,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['kampanja'])) {
                 if ($redak2["ID_profil"] !== null && isset($redak2["ID_profil"]) && !empty($redak2["ID_profil"])) {
                     $smarty->assign('imaprofil', true);
                     $smarty->assign('idkampanje', $kampanja);
+                    $upitModeratorIzKampanje = "SELECT ID_korisnik FROM kampanja WHERE ID_kampanja = '$kampanja'";
+                    $rezultatModeratorIzKampanje = $veza->selectDB($upitModeratorIzKampanje);
+                    if ($rezultatModeratorIzKampanje->num_rows > 0) {
+                        while ($redakModeratorIzKampanje = $rezultatModeratorIzKampanje->fetch_assoc()) {
+                            $smarty->assign('IdModeratora', $redakModeratorIzKampanje["ID_korisnik"]);
+                        }
+                    }
                 }
             }
         }

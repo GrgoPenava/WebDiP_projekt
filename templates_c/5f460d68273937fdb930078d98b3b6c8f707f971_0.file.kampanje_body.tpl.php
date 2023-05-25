@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.0, created on 2023-05-25 15:36:09
+/* Smarty version 4.3.0, created on 2023-05-25 20:03:06
   from 'C:\xampp\htdocs\projekt\templates\kampanje_body.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.0',
-  'unifunc' => 'content_646f644957b979_63293365',
+  'unifunc' => 'content_646fa2da0e82f6_81514903',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5f460d68273937fdb930078d98b3b6c8f707f971' => 
     array (
       0 => 'C:\\xampp\\htdocs\\projekt\\templates\\kampanje_body.tpl',
-      1 => 1685021763,
+      1 => 1685037784,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_646f644957b979_63293365 (Smarty_Internal_Template $_smarty_tpl) {
+function content_646fa2da0e82f6_81514903 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="wrapper">
   <main>
     <section>
@@ -41,8 +41,12 @@ function content_646f644957b979_63293365 (Smarty_Internal_Template $_smarty_tpl)
 </div>
 <div style="display: flex; justify-content: flex-end; margin-right:1rem;">
   <?php if ((isset($_SESSION['uloga'])) && $_SESSION['uloga'] <= 2) {?>
+    <div style="display:flex; gap:1rem;">
+                <a href="<?php echo $_smarty_tpl->tpl_vars['putanja']->value;?>
+/ostalo/statistikaKampanja.php" class="card-button" style="font-weight:bolder;">Statistika kampanja</a>
                 <a href="<?php echo $_smarty_tpl->tpl_vars['putanja']->value;?>
 /obrasci/kreirajKampanju.php" class="card-button" style="font-weight:bolder;">Kreiraj kampanju</a>
+    </div>
   <?php }?>
 </div>
 

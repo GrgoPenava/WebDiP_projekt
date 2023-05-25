@@ -18,7 +18,10 @@
 </div>
 <div style="display: flex; justify-content: flex-end; margin-right:1rem;">
   {if isset($smarty.session.uloga)&& $smarty.session.uloga <= 2}
+    <div style="display:flex; gap:1rem;">
+                <a href="{$putanja}/ostalo/statistikaKampanja.php" class="card-button" style="font-weight:bolder;">Statistika kampanja</a>
                 <a href="{$putanja}/obrasci/kreirajKampanju.php" class="card-button" style="font-weight:bolder;">Kreiraj kampanju</a>
+    </div>
   {/if}
 </div>
 
