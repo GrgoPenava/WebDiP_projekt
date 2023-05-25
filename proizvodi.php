@@ -34,7 +34,6 @@ if (isset($_SESSION["uloga"])) {
     $smarty->assign('uloga', $_SESSION["uloga"]);
     $trenutniEmail = $_SESSION["korisnik"];
 }
-var_dump($trenutniEmail);
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['kampanja'])) {
     $kampanja = $_GET["kampanja"];
     $upit = "SELECT p.*
@@ -56,6 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['kampanja'])) {
             while ($redak2 = $rezultat2->fetch_assoc()) {
                 if ($redak2["ID_profil"] !== null && isset($redak2["ID_profil"]) && !empty($redak2["ID_profil"])) {
                     $smarty->assign('imaprofil', true);
+                    $smarty->assign('idkampanje', $kampanja);
                 }
             }
         }
@@ -64,6 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['kampanja'])) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['kupinovcem'])) {
     $upisanNovac = $_POST["unesenavrijednost"];
     $idProizvod = $_POST["id_proizvod"];
+    $idKampanjeIzSmarty = $_POST["id_kampanje_iz_smarty"];
     $upitproizvod = "SELECT * from proizvod WHERE ID_proizvod = '$idProizvod'";
     $rezultatproizvod = $veza->selectDB($upitproizvod);
     if ($rezultatproizvod->num_rows > 0) {
@@ -75,24 +76,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['kupinovcem'])) {
                 $upitpovecajbodove = "UPDATE korisnik SET broj_bodova = broj_bodova + '$redakproizvod[bodovi_za_kupovinu]' WHERE email = '$trenutniEmail';";
                 $rezultatpovecajbodove = $veza->selectDB($upitpovecajbodove);
 
+                $upitPovecajBrojKupljenihProizvodaUKampanji = "UPDATE kampanja SET broj_kupljenih_proizvoda = broj_kupljenih_proizvoda + 1 WHERE ID_kampanja = '$idKampanjeIzSmarty';";
+                $rezultatPovecajBrojKupljenihProizvodaUKampanji = $veza->selectDB($upitPovecajBrojKupljenihProizvodaUKampanji);
+
                 $upitkorisnik = "SELECT * from korisnik WHERE email = '$trenutniEmail'";
                 $rezultatkorisnik = $veza->selectDB($upitkorisnik);
                 if ($rezultatkorisnik->num_rows > 0) {
                     while ($redakkorisnik = $rezultatkorisnik->fetch_assoc()) {
                         $trenutniDatum = date("Y-m-d");
-                        var_dump("ude", $redakkorisnik["ID_korisnik"], $idProizvod, $trenutniDatum);
                         $upitzaupisubazukupnje = "INSERT INTO kupio (ID_korisnik,ID_proizvod,kolicina,datum_kupnje) VALUES ('$redakkorisnik[ID_korisnik]','$idProizvod',1,'$trenutniDatum')";
                         $rezultatupisikorisniku2 = $veza->selectDB($upitzaupisubazukupnje);
+                        header("Location:" . $putanja . "/index.php");
                     }
                 }
             }
         }
     }
-    //header("Location:" . $putanja . "/index.php");
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['kupibodovima'])) {
     $idProizvod = $_POST["id_proizvod"];
+    $idKampanjeIzSmarty = $_POST["id_kampanje_iz_smarty"];
     $upitkorisnik = "SELECT * from korisnik WHERE email = '$trenutniEmail'";
     $rezultatkorisnik = $veza->selectDB($upitkorisnik);
     if ($rezultatkorisnik->num_rows > 0) {
@@ -109,6 +113,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['kupibodovima'])) {
                         $trenutniDatum = date("Y-m-d");
                         $upitupisiproizvodkorisniku = "INSERT INTO kupio (ID_korisnik,ID_proizvod,kolicina,datum_kupnje) VALUES ('$redakkorisnik[ID_korisnik]','$idProizvod',1,'$trenutniDatum')";
                         $rezultatupisikorisniku = $veza->selectDB($upitupisiproizvodkorisniku);
+                        $upitPovecajBrojKupljenihProizvodaUKampanji = "UPDATE kampanja SET broj_kupljenih_proizvoda = broj_kupljenih_proizvoda + 1 WHERE ID_kampanja = '$idKampanjeIzSmarty';";
+                        $rezultatPovecajBrojKupljenihProizvodaUKampanji = $veza->selectDB($upitPovecajBrojKupljenihProizvodaUKampanji);
+                        header("Location:" . $putanja . "/index.php");
                     }
                 }
             }

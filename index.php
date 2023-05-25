@@ -29,8 +29,21 @@ if (isset($_SESSION['odabrani_jezik']) && $_SESSION['odabrani_jezik'] == "njemac
 $smarty->assign('naslov', "Početna stranica");
 $smarty->assign('putanja', $putanja);
 $smarty->display('./templates/header.tpl');
+
+$trenutniEmail = null;
+$trenutniKorisnik = array();
 if (isset($_SESSION["uloga"])) {
   $smarty->assign('uloga', $_SESSION["uloga"]);
+  $trenutniEmail = $_SESSION["korisnik"];
+  $upitkorisnik = "SELECT * from korisnik WHERE email = '$trenutniEmail'";
+  $rezultatkorisnik = $veza->selectDB($upitkorisnik);
+  if ($rezultatkorisnik->num_rows > 0) {
+    while ($redakkorisnik = $rezultatkorisnik->fetch_assoc()) {
+      $trenutniKorisnik = $redakkorisnik;
+      $smarty->assign("IDTrenutnogKorisnika", $trenutniKorisnik["ID_korisnik"]);
+      $smarty->assign("UlogaTrenutnogKorisnika", $trenutniKorisnik["ID_uloga"]);
+    }
+  }
 }
 
 $upit = "SELECT kampanja.*, korisnik.ime, korisnik.prezime, SUM(IFNULL(proizvod.kolicina, 0)) AS broj_proizvoda
@@ -73,7 +86,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['datumButton'])) {
   $pocetak = date("Y-m-d", strtotime($_POST['prvidatum']));
   $kraj = date("Y-m-d", strtotime($_POST['drugidatum']));
   if (strlen($_POST['prvidatum'] > 2)) {
-    var_dump($_POST['prvidatum']);
     foreach ($kampanje as $kampanja => $redak) {
       if (date("Y-m-d", strtotime($redak['datum_i_vrijeme_pocetka'])) < $pocetak) {
         unset($kampanje[$kampanja]);

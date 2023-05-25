@@ -32,7 +32,7 @@ function provjera(){
 function provjeraSlike(){
 let datoteka = document.getElementById('slika').files[0].name;
 let splitaninaziv = datoteka.split(".");
-if(splitaninaziv[1] === "png" || splitaninaziv[1] === "jpg" || splitaninaziv[1] === "svg" || splitaninaziv[1] === "jpeg"){
+if(splitaninaziv[1] === "png"){
     return true;
 }else{
     return false;

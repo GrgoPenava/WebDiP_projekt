@@ -65,7 +65,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['kreirajprofilButton']
     $upit4 = "SELECT ID_profil FROM profil ORDER BY ID_profil DESC LIMIT 1;";
     $rezultat4 = $veza->selectDB($upit4);
     while ($redak4 = $rezultat4->fetch_assoc()) {
-        var_dump($redak4["ID_profil"]);
         $upit5 = "UPDATE korisnik SET ID_profil='$redak4[ID_profil]' WHERE email='$trenutniEmail'";
         $rezultat5 = $veza->selectDB($upit5);
         header("Location: " . $_SERVER['PHP_SELF']);

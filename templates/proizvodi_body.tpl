@@ -20,6 +20,7 @@
                 {if isset($smarty.session.uloga) && $smarty.session.uloga < 4 && isset($imaprofil) && {$proizvod['kolicina']} > 0}
                 <form id="kupinovcem" method="POST" name="kupinovcem" action="" novalidate>
                 <input type="hidden" name="id_proizvod" value="{$proizvod['ID_proizvod']}">
+                <input type="hidden" name="id_kampanje_iz_smarty" value="{$idkampanje}">
                 <div style="display:flex;gap:0.5rem; margin-bottom:1rem;">
                 <input type="text" id="unesenavrijednost" name="unesenavrijednost" /><br />
                 <input class="card-button" style="cursor:pointer;" type="submit" value="Kupi" name="kupinovcem"/>
@@ -27,6 +28,7 @@
                 </form>
                 <form id="kupibodovima" method="POST" name="kupibodovima" action="" novalidate>
                 <input type="hidden" name="id_proizvod" value="{$proizvod['ID_proizvod']}">
+                <input type="hidden" name="id_kampanje_iz_smarty" value="{$idkampanje}">
                 <div style="display:flex; flex-direction:column; align-items:center; justify-content:center;">
                 <input class="card-button" style="cursor:pointer;" type="submit" value="Kupi bodovima" name="kupibodovima"/>
                 </div>

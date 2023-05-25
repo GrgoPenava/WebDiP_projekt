@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.0, created on 2023-05-24 22:09:54
+/* Smarty version 4.3.0, created on 2023-05-25 11:28:36
   from 'C:\xampp\htdocs\projekt\templates\proizvodi_body.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.0',
-  'unifunc' => 'content_646e6f12db19f0_05308507',
+  'unifunc' => 'content_646f2a44962ad2_08738989',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ba8c40fc15cc8a5aa29d61ab45eac4b4607e19c6' => 
     array (
       0 => 'C:\\xampp\\htdocs\\projekt\\templates\\proizvodi_body.tpl',
-      1 => 1684958993,
+      1 => 1685006915,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_646e6f12db19f0_05308507 (Smarty_Internal_Template $_smarty_tpl) {
+function content_646f2a44962ad2_08738989 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="wrapper">
   <main>
     <section>
@@ -58,6 +58,8 @@ if ((isset($_SESSION['uloga'])) && $_SESSION['uloga'] < 4 && (isset($_smarty_tpl
                 <form id="kupinovcem" method="POST" name="kupinovcem" action="" novalidate>
                 <input type="hidden" name="id_proizvod" value="<?php echo $_smarty_tpl->tpl_vars['proizvod']->value['ID_proizvod'];?>
 ">
+                <input type="hidden" name="id_kampanje_iz_smarty" value="<?php echo $_smarty_tpl->tpl_vars['idkampanje']->value;?>
+">
                 <div style="display:flex;gap:0.5rem; margin-bottom:1rem;">
                 <input type="text" id="unesenavrijednost" name="unesenavrijednost" /><br />
                 <input class="card-button" style="cursor:pointer;" type="submit" value="Kupi" name="kupinovcem"/>
@@ -65,6 +67,8 @@ if ((isset($_SESSION['uloga'])) && $_SESSION['uloga'] < 4 && (isset($_smarty_tpl
                 </form>
                 <form id="kupibodovima" method="POST" name="kupibodovima" action="" novalidate>
                 <input type="hidden" name="id_proizvod" value="<?php echo $_smarty_tpl->tpl_vars['proizvod']->value['ID_proizvod'];?>
+">
+                <input type="hidden" name="id_kampanje_iz_smarty" value="<?php echo $_smarty_tpl->tpl_vars['idkampanje']->value;?>
 ">
                 <div style="display:flex; flex-direction:column; align-items:center; justify-content:center;">
                 <input class="card-button" style="cursor:pointer;" type="submit" value="Kupi bodovima" name="kupibodovima"/>
