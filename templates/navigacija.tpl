@@ -13,6 +13,7 @@
         {if isset($smarty.session.uloga)&& $smarty.session.uloga < 4}
             <a href="{$putanja}/ostalo/profil.php">Profil</a>
         {/if}
+        <a href="{$putanja}/o_autoru.php">O autoru</a>
         {if isset($smarty.session.uloga)}
             <a href='?odjava=da'><button type='button' class='odjava-button'>Odjava</button></a>
         {/if}

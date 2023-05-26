@@ -12,6 +12,7 @@
 <button id="usernameButton" style="align-items:center; cursor:pointer;" onclick="sortirajTablicuAZ()">A-Z</button>
 <button id="usernameButton" style="align-items:center; cursor:pointer;" onclick="sortirajTablicuZA()">Z-A</button>
 </div>
+<h1 style="display:flex; justify-content: center;">Popis korisnika koji imaju kreiran profil</h1>
 <div style="display:flex; justify-content: center;">
 <table id="mojaTablica">
               <thead>
@@ -20,6 +21,9 @@
                   <th>Username</th>
                   <th>Ime</th>
                   <th>Prezime</th>
+                {if isset($uloga) && $uloga == 1}
+                <th></th>
+                {/if}
                 </tr>
               </thead>
               <tbody>
@@ -29,6 +33,9 @@
       <td>{$redak.username}</td>
       <td>{$redak.ime}</td>
       <td>{$redak.prezime}</td>
+      {if isset($uloga) && $uloga == 1}
+      <td id="urediUlogu"><a href="{$putanja}/obrasci/urediKorisnikUloga.php?korisnik={$redak.ID_korisnik}" class="card-button">Uredi</a></td>
+      {/if}
     </tr>
   {/foreach}
               </tbody>

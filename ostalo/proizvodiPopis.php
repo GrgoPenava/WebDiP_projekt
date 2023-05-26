@@ -48,7 +48,7 @@ if (isset($_SESSION["uloga"])) {
 }
 
 $proizvodi = array();
-$upit = "SELECT * from proizvod";
+$upit = "SELECT p.*, k.username FROM proizvod AS p JOIN korisnik AS k ON p.ID_korisnik = k.ID_korisnik";
 $rezultat = $veza->selectDB($upit);
 if ($rezultat->num_rows > 0) {
     while ($redak = $rezultat->fetch_assoc()) {
@@ -60,12 +60,60 @@ if ($rezultat->num_rows > 0) {
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['usernameButton'])) {
+    $moderatorKojiTrazi = $_POST['moderator'];
+    if (strlen($moderatorKojiTrazi) > 0) {
+        $upit2 = "SELECT p.*, k.username FROM proizvod AS p JOIN korisnik AS k ON p.ID_korisnik = k.ID_korisnik";
+        $rezultat2 = $veza->selectDB($upit2);
+        $proizvodi2 = array();
+        if ($rezultat2->num_rows > 0) {
+            while ($redak2 = $rezultat2->fetch_assoc()) {
+                array_push($proizvodi2, $redak2);
+            }
+        }
+        foreach ($proizvodi2 as $kljuc2 => $vrijednost2) {
+            if (strpos($vrijednost2["username"], $moderatorKojiTrazi) === false) {
+                unset($proizvodi2[$kljuc2]);
+            }
+        }
+        $brojZapisa = count($proizvodi2);
+        $smarty->assign('proizvodi', $proizvodi2);
+        $smarty->assign('brojacZapisa', $brojZapisa);
+    } else {
+        $brojZapisa = count($proizvodi);
+        $smarty->assign('brojacZapisa', $brojZapisa);
+        $smarty->assign('proizvodi', $proizvodi);
+    }
+} elseif ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nazivButton'])) {
+    $nazivKojiTrazi = $_POST['naziv'];
+    if (strlen($nazivKojiTrazi) > 0) {
+        $upit3 = "SELECT p.*, k.username FROM proizvod AS p JOIN korisnik AS k ON p.ID_korisnik = k.ID_korisnik";
+        $rezultat3 = $veza->selectDB($upit3);
+        $proizvodi3 = array();
+        if ($rezultat3->num_rows > 0) {
+            while ($redak3 = $rezultat3->fetch_assoc()) {
+                array_push($proizvodi3, $redak3);
+            }
+        }
+        foreach ($proizvodi3 as $kljuc3 => $vrijednost3) {
+            if (strpos($vrijednost3["naziv"], $nazivKojiTrazi) === false) {
+                unset($proizvodi3[$kljuc3]);
+            }
+        }
+        $brojZapisa = count($proizvodi3);
+        $smarty->assign('proizvodi', $proizvodi3);
+        $smarty->assign('brojacZapisa', $brojZapisa);
+    } else {
+        $brojZapisa = count($proizvodi);
+        $smarty->assign('brojacZapisa', $brojZapisa);
+        $smarty->assign('proizvodi', $proizvodi);
+    }
+} else {
+    $brojZapisa = count($proizvodi);
+    $smarty->assign('brojacZapisa', $brojZapisa);
+    $smarty->assign('proizvodi', $proizvodi);
 }
 
-$brojZapisa = count($proizvodi);
-$smarty->assign('brojacZapisa', $brojZapisa);
-$smarty->assign('proizvodi', $proizvodi);
-$smarty->assign('naslov', "Popis");
+$smarty->assign('naslov', "Proizvodi");
 $smarty->assign('putanja', $putanja);
 $smarty->display('../templates/header.tpl');
 if (isset($_SESSION["uloga"])) {

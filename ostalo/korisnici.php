@@ -73,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['usernameButton'])) {
 $brojZapisa = count($korisnici);
 $smarty->assign('brojacZapisa', $brojZapisa);
 $smarty->assign('korisnici', $korisnici);
-$smarty->assign('naslov', "Popis");
+$smarty->assign('naslov', "Korisnici s profilom");
 $smarty->assign('putanja', $putanja);
 $smarty->display('../templates/header.tpl');
 if (isset($_SESSION["uloga"])) {

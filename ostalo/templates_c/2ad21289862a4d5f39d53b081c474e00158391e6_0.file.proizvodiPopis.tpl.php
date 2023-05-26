@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.0, created on 2023-05-26 13:14:46
+/* Smarty version 4.3.0, created on 2023-05-26 19:14:41
   from 'C:\xampp\htdocs\projekt\templates\proizvodiPopis.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.0',
-  'unifunc' => 'content_647094a69c7d59_38706395',
+  'unifunc' => 'content_6470e901099256_18570625',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '2ad21289862a4d5f39d53b081c474e00158391e6' => 
     array (
       0 => 'C:\\xampp\\htdocs\\projekt\\templates\\proizvodiPopis.tpl',
-      1 => 1685099684,
+      1 => 1685121004,
       2 => 'file',
     ),
   ),
@@ -20,20 +20,41 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_647094a69c7d59_38706395 (Smarty_Internal_Template $_smarty_tpl) {
-?><div class="datumform" style="padding-bottom:2rem;">
+function content_6470e901099256_18570625 (Smarty_Internal_Template $_smarty_tpl) {
+?><div style="display:flex; justify-items:end; justify-content:end; margin-right: 2rem; margin-top:2rem; gap:1rem;">
+<a href="<?php echo $_smarty_tpl->tpl_vars['putanja']->value;?>
+/obrasci/kreirajProizvod.php" class="card-button">Kreiraj proizvod</a>
+<a href="<?php echo $_smarty_tpl->tpl_vars['putanja']->value;?>
+/ostalo/statistikaPoModeratoru.php" class="card-button">Statistika po moderatoru</a>
+</div>
+<div class="datumform" style="padding-bottom:0.5rem;">
               <form id="formDatum" method="POST" name="form3" novalidate>
               <div style="display:flex; align-items:center; gap:0.2rem;">
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" ><br/>
+                <label for="moderator">Moderator:</label>
+                <input type="text" id="moderator" name="moderator" ><br/>
               </div>
-                <input id="usernameButton" type="submit" value="Filtriraj" name="usernameButton" style="align-items:center"/>
+                <input id="moderatorButton" type="submit" value="Filtriraj" name="usernameButton" style="align-items:center"/>
+              </form>
+  </div>
+  <div class="datumform" style="padding-bottom:2rem;">
+              <form id="formDatum" method="POST" name="form3" novalidate>
+              <div style="display:flex; align-items:center; gap:0.2rem;">
+                <label for="naziv">Naziv:</label>
+                <input type="text" id="naziv" name="naziv" ><br/>
+              </div>
+                <input id="moderatorButton" type="submit" value="Filtriraj" name="nazivButton" style="align-items:center"/>
               </form>
   </div>
 <?php if ($_smarty_tpl->tpl_vars['proizvodi']->value) {?>
-<div style="display:flex; align-items:center; justify-content:center; gap:0.2rem; padding-bottom:2rem;">
-<button id="usernameButton" style="align-items:center; cursor:pointer;" onclick="sortirajTablicuAZ()">A-Z</button>
-<button id="usernameButton" style="align-items:center; cursor:pointer;" onclick="sortirajTablicuZA()">Z-A</button>
+<div style="display:flex; align-items:center; justify-content:center; gap:2rem; padding-bottom:2rem;">
+<div style="display:flex; flex-direction:column; gap: 0.3rem">
+<button id="datumButton" style="align-items:center; cursor:pointer;" onclick="sortirajTablicuKolicinaAZ()">Količina (A-Z)</button>
+<button id="datumButton" style="align-items:center; cursor:pointer;" onclick="sortirajTablicuKolicinaZA()">Količina (Z-A)</button>
+</div>
+<div style="display:flex; flex-direction:column; gap: 0.3rem">
+<button id="datumButton" style="align-items:center; cursor:pointer;" onclick="sortirajTablicuModeratorAZ()">Moderator (A-Z)</button>
+<button id="datumButton" style="align-items:center; cursor:pointer;" onclick="sortirajTablicuModeratorZA()">Moderator (Z-A)</button>
+</div>
 </div>
 <div style="display:flex; justify-content: center;">
 <table id="mojaTablica">
@@ -47,6 +68,7 @@ function content_647094a69c7d59_38706395 (Smarty_Internal_Template $_smarty_tpl)
                   <th>Cijena u bodovima</th>
                   <th>Bodovi za kupnju</th>
                   <th>Status</th>
+                  <th>Moderator</th>
                 </tr>
               </thead>
               <tbody>
@@ -72,7 +94,16 @@ $_smarty_tpl->tpl_vars['redak']->do_else = false;
 </td>
       <td><?php echo $_smarty_tpl->tpl_vars['redak']->value['bodovi_za_kupovinu'];?>
 </td>
-      <td><?php echo $_smarty_tpl->tpl_vars['redak']->value['id_status_proizvoda'];?>
+      <td>
+      <?php if ($_smarty_tpl->tpl_vars['redak']->value['id_status_proizvoda'] == 1) {?>
+        Raspoloživo
+      <?php } elseif ($_smarty_tpl->tpl_vars['redak']->value['id_status_proizvoda'] == 2) {?>
+        Nije raspoloživo
+      <?php } else { ?>
+        Nepoznato
+      <?php }?>
+    </td>
+      <td><?php echo $_smarty_tpl->tpl_vars['redak']->value['username'];?>
 </td>
     </tr>
   <?php
@@ -90,13 +121,13 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
             </table>
 </div>
 <?php } else { ?>
-<p style="display:flex; justify-content: center; font-size:large; font-weight:bolder;">Nema korisnika u bazi podataka.</p>
+<p style="display:flex; justify-content: center; font-size:large; font-weight:bolder;">Nema proizvoda u bazi podataka.</p>
 <?php }?>
 <div style="min-height:29rem; min-width:98vw;"></div>
 
 <?php echo '<script'; ?>
  type="text/javascript">
-  function sortirajTablicuAZ() {
+  function sortirajTablicuKolicinaAZ() {
     var tabl, redovi, promjena, i, x, y;
     tabl = document.getElementById("mojaTablica");
     promjena = true;
@@ -104,8 +135,8 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
       promjena = false;
       redovi = tabl.rows;
       for (i = 1; i < (redovi.length - 1); i++) {
-        x = redovi[i].getElementsByTagName("TD")[1];
-        y = redovi[i + 1].getElementsByTagName("TD")[1];
+        x = redovi[i].getElementsByTagName("TD")[3];
+        y = redovi[i + 1].getElementsByTagName("TD")[3];
         if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
           redovi[i].parentNode.insertBefore(redovi[i + 1], redovi[i]);
           promjena = true;
@@ -115,7 +146,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
     }
   }
 
-  function sortirajTablicuZA() {
+  function sortirajTablicuKolicinaZA() {
   var tabl, redovi, promjena, i, x, y;
   tabl = document.getElementById("mojaTablica");
   promjena = true;
@@ -123,8 +154,46 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
     promjena = false;
     redovi = tabl.rows;
     for (i = 1; i < (redovi.length - 1); i++) {
-      x = redovi[i].getElementsByTagName("TD")[1];
-      y = redovi[i + 1].getElementsByTagName("TD")[1];
+      x = redovi[i].getElementsByTagName("TD")[3];
+      y = redovi[i + 1].getElementsByTagName("TD")[3];
+      if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+        redovi[i].parentNode.insertBefore(redovi[i + 1], redovi[i]);
+        promjena = true;
+        break;
+      }
+    }
+  }
+}
+
+function sortirajTablicuModeratorAZ() {
+    var tabl, redovi, promjena, i, x, y;
+    tabl = document.getElementById("mojaTablica");
+    promjena = true;
+    while (promjena) {
+      promjena = false;
+      redovi = tabl.rows;
+      for (i = 1; i < (redovi.length - 1); i++) {
+        x = redovi[i].getElementsByTagName("TD")[8];
+        y = redovi[i + 1].getElementsByTagName("TD")[8];
+        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+          redovi[i].parentNode.insertBefore(redovi[i + 1], redovi[i]);
+          promjena = true;
+          break;
+        }
+      }
+    }
+  }
+
+  function sortirajTablicuModeratorZA() {
+  var tabl, redovi, promjena, i, x, y;
+  tabl = document.getElementById("mojaTablica");
+  promjena = true;
+  while (promjena) {
+    promjena = false;
+    redovi = tabl.rows;
+    for (i = 1; i < (redovi.length - 1); i++) {
+      x = redovi[i].getElementsByTagName("TD")[8];
+      y = redovi[i + 1].getElementsByTagName("TD")[8];
       if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
         redovi[i].parentNode.insertBefore(redovi[i + 1], redovi[i]);
         promjena = true;

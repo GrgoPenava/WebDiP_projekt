@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.0, created on 2023-05-26 15:09:33
+/* Smarty version 4.3.0, created on 2023-05-26 16:45:54
   from 'C:\xampp\htdocs\projekt\templates\urediCijeliProizvod.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.0',
-  'unifunc' => 'content_6470af8d916f40_78070960',
+  'unifunc' => 'content_6470c622679d95_15470756',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '2c269dc1b3a9e49f39000aee20920330a6183af1' => 
     array (
       0 => 'C:\\xampp\\htdocs\\projekt\\templates\\urediCijeliProizvod.tpl',
-      1 => 1685106569,
+      1 => 1685112350,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6470af8d916f40_78070960 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6470c622679d95_15470756 (Smarty_Internal_Template $_smarty_tpl) {
 ?><main>
     <section class="centeredsection" style="height: 60rem;">
       <div style="margin-top:5rem;">
@@ -177,6 +177,11 @@ function provjeriOpisEng(){
 function provjeriKolicinu(){
   let naziv = document.getElementById('kolicina').value;
   if(naziv.length>0 && !isNaN(naziv)){
+    if(naziv == 0){
+      let raspoloziv = document.getElementById('status_proizvoda');
+      raspoloziv.value = 2;
+      raspoloziv.setAttribute('selected', 'selected');
+    }
     return true;
   }else{
     return false;

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.0, created on 2023-05-23 20:39:14
+/* Smarty version 4.3.0, created on 2023-05-26 21:39:06
   from 'C:\xampp\htdocs\projekt\templates\korisnici_body.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.0',
-  'unifunc' => 'content_646d0852308278_48007544',
+  'unifunc' => 'content_64710ada9076a2_01102310',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '55cb4540834876f9c6b01e654e1645927a8cad80' => 
     array (
       0 => 'C:\\xampp\\htdocs\\projekt\\templates\\korisnici_body.tpl',
-      1 => 1684867153,
+      1 => 1685129943,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_646d0852308278_48007544 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64710ada9076a2_01102310 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="datumform" style="padding-bottom:2rem;">
               <form id="formDatum" method="POST" name="form3" novalidate>
               <div style="display:flex; align-items:center; gap:0.2rem;">
@@ -35,6 +35,7 @@ function content_646d0852308278_48007544 (Smarty_Internal_Template $_smarty_tpl)
 <button id="usernameButton" style="align-items:center; cursor:pointer;" onclick="sortirajTablicuAZ()">A-Z</button>
 <button id="usernameButton" style="align-items:center; cursor:pointer;" onclick="sortirajTablicuZA()">Z-A</button>
 </div>
+<h1 style="display:flex; justify-content: center;">Popis korisnika koji imaju kreiran profil</h1>
 <div style="display:flex; justify-content: center;">
 <table id="mojaTablica">
               <thead>
@@ -43,6 +44,9 @@ function content_646d0852308278_48007544 (Smarty_Internal_Template $_smarty_tpl)
                   <th>Username</th>
                   <th>Ime</th>
                   <th>Prezime</th>
+                <?php if ((isset($_smarty_tpl->tpl_vars['uloga']->value)) && $_smarty_tpl->tpl_vars['uloga']->value == 1) {?>
+                <th></th>
+                <?php }?>
                 </tr>
               </thead>
               <tbody>
@@ -61,6 +65,11 @@ $_smarty_tpl->tpl_vars['redak']->do_else = false;
 </td>
       <td><?php echo $_smarty_tpl->tpl_vars['redak']->value['prezime'];?>
 </td>
+      <?php if ((isset($_smarty_tpl->tpl_vars['uloga']->value)) && $_smarty_tpl->tpl_vars['uloga']->value == 1) {?>
+      <td id="urediUlogu"><a href="<?php echo $_smarty_tpl->tpl_vars['putanja']->value;?>
+/obrasci/urediKorisnikUloga.php?korisnik=<?php echo $_smarty_tpl->tpl_vars['redak']->value['ID_korisnik'];?>
+" class="card-button">Uredi</a></td>
+      <?php }?>
     </tr>
   <?php
 }

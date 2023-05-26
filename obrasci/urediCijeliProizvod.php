@@ -95,6 +95,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['urediProizvod'])) {
     $blobFormat = addslashes(file_get_contents($slika["tmp_name"]));
     $upitUrediProizvod = "UPDATE proizvod SET naziv = '$naziv', naziv_eng = '$naziv_eng', opis='$opis',opis_eng='$opis_eng', slika = '$blobFormat', kolicina = '$kolicina', cijena = '$cijena',cijena_eng='$cijena_eng',cijena_u_bodovima='$cijena_u_bodovima',bodovi_za_kupovinu='$bodovi_za_kupovinu',id_status_proizvoda='$status',ID_tip_proizvoda='$tip',ID_korisnik='$moderator' WHERE ID_proizvod = '$idProizvoda'";
     $rezultatUrediProizvod = $veza->selectDB($upitUrediProizvod);
+    $upitProvjeraZaStatus = "SELECT kolicina,id_status_proizvoda FROM proizvod WHERE ID_proizvod = '$idProizvod'";
+    $rezultatProvjeraZaStatus = $veza->selectDB($upitProvjeraZaStatus);
+    if ($rezultatProvjeraZaStatus->num_rows > 0) {
+        while ($redakZaStatus = $rezultatProvjeraZaStatus->fetch_assoc()) {
+            if ($redakZaStatus["kolicina"] == 0 || $redakZaStatus["kolicina"] == null) {
+                $upitUpisiZaStatus = "UPDATE proizvod SET id_status_proizvoda = 2 WHERE ID_proizvod = '$idProizvod'";
+                $rezultatUpisiZaStatus = $veza->selectDB($upitUpisiZaStatus);
+            }
+        }
+    }
     header("Location:" . $putanja . "/ostalo/proizvodiPopis.php");
 }
 

@@ -1,27 +1,4 @@
-<?php
-/* Smarty version 4.3.0, created on 2023-05-26 18:32:47
-  from 'C:\xampp\htdocs\projekt\templates\o_autoru_body.tpl' */
-
-/* @var Smarty_Internal_Template $_smarty_tpl */
-if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
-  'version' => '4.3.0',
-  'unifunc' => 'content_6470df2f3ca121_80382303',
-  'has_nocache_code' => false,
-  'file_dependency' => 
-  array (
-    '3132a61b6350b7cc049bbbcf13d8109f7320f1d0' => 
-    array (
-      0 => 'C:\\xampp\\htdocs\\projekt\\templates\\o_autoru_body.tpl',
-      1 => 1685118735,
-      2 => 'file',
-    ),
-  ),
-  'includes' => 
-  array (
-  ),
-),false)) {
-function content_6470df2f3ca121_80382303 (Smarty_Internal_Template $_smarty_tpl) {
-?><h1 class="naslov-o-autoru">Informacije o autoru</h1>
+<h1 class="naslov-o-autoru">Informacije o autoru</h1>
 <main>
       <div class="sekcije">
         <section class="prva-sekcija">
@@ -115,5 +92,4 @@ function content_6470df2f3ca121_80382303 (Smarty_Internal_Template $_smarty_tpl)
           </div>
         </section>
       </div>
-    </main><?php }
-}
+    </main>
