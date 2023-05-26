@@ -30,16 +30,5 @@
                     <option value="njemackiJezik" {$jezik_oznacen_njemacki}>Njemački jezik</option>
                 </select>
             </form>
-            <a href="#pretrazivanje"><i class="fa fa-search" id="searchIcon"></i></a>
-            <div id="pretrazivanje">
-                <div class="popup-content">
-                    <a href="#"><i class="fa fa-close" id="exitIcon"></i></a>
-                    <form id="form1" method="post" name="form1" action="" novalidate>
-                        <label for="trazi">Pojam:</label>
-                        <input type="search" id="trazi" name="trazi" />
-                        <input type="submit" value="Pretraži" name="pretrazi" />
-                    </form>
-                </div>
-            </div>
         </div>
     </header>

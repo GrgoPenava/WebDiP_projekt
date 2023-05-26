@@ -91,6 +91,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['kupinovcem'])) {
                 $upitsmanji = "UPDATE proizvod SET kolicina = kolicina - 1 WHERE ID_proizvod = '$idProizvod'";
                 $rezultatsmanji = $veza->selectDB($upitsmanji);
 
+                $upitProvjeraZaStatus = "SELECT kolicina,id_status_proizvoda FROM proizvod WHERE ID_proizvod = '$idProizvod'";
+                $rezultatProvjeraZaStatus = $veza->selectDB($upitProvjeraZaStatus);
+                if ($rezultatProvjeraZaStatus->num_rows > 0) {
+                    while ($redakZaStatus = $rezultatProvjeraZaStatus->fetch_assoc()) {
+                        var_dump($redakZaStatus);
+                        if ($redakZaStatus["kolicina"] == 0 || $redakZaStatus["kolicina"] == null) {
+                            $upitUpisiZaStatus = "UPDATE proizvod SET id_status_proizvoda = 2 WHERE ID_proizvod = '$idProizvod'";
+                            $rezultatUpisiZaStatus = $veza->selectDB($upitUpisiZaStatus);
+                        }
+                    }
+                }
+
                 $upitpovecajbodove = "UPDATE korisnik SET broj_bodova = broj_bodova + '$redakproizvod[bodovi_za_kupovinu]' WHERE email = '$trenutniEmail';";
                 $rezultatpovecajbodove = $veza->selectDB($upitpovecajbodove);
 
@@ -128,6 +140,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['kupibodovima'])) {
                         $rezultatsmanjibodove = $veza->selectDB($upitsmanjibodove);
                         $upitsmanjikolicinuzajedan = "UPDATE proizvod SET kolicina = kolicina - 1 WHERE ID_proizvod = '$idProizvod'";
                         $rezultatsmanjikolicinuzajedan = $veza->selectDB($upitsmanjikolicinuzajedan);
+
+
+                        $upitProvjeraZaStatus = "SELECT kolicina,id_status_proizvoda FROM proizvod WHERE ID_proizvod = '$idProizvod'";
+                        $rezultatProvjeraZaStatus = $veza->selectDB($upitProvjeraZaStatus);
+                        if ($rezultatProvjeraZaStatus->num_rows > 0) {
+                            while ($redakZaStatus = $rezultatProvjeraZaStatus->fetch_assoc()) {
+                                if ($redakZaStatus["kolicina"] == 0 || $redakZaStatus["kolicina"] == null) {
+                                    $upitUpisiZaStatus = "UPDATE proizvod SET id_status_proizvoda = 2 WHERE ID_proizvod = '$idProizvod'";
+                                    $rezultatUpisiZaStatus = $veza->selectDB($upitUpisiZaStatus);
+                                }
+                            }
+                        }
+
+
                         $trenutniDatum = date("Y-m-d");
                         $upitupisiproizvodkorisniku = "INSERT INTO kupio (ID_korisnik,ID_proizvod,kolicina,datum_kupnje) VALUES ('$redakkorisnik[ID_korisnik]','$idProizvod',1,'$trenutniDatum')";
                         $rezultatupisikorisniku = $veza->selectDB($upitupisiproizvodkorisniku);

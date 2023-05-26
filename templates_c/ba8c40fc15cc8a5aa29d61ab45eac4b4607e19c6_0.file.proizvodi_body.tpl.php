@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.0, created on 2023-05-25 20:52:05
+/* Smarty version 4.3.0, created on 2023-05-25 21:57:06
   from 'C:\xampp\htdocs\projekt\templates\proizvodi_body.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.0',
-  'unifunc' => 'content_646fae55b21ed5_94704813',
+  'unifunc' => 'content_646fbd925f4594_02219677',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ba8c40fc15cc8a5aa29d61ab45eac4b4607e19c6' => 
     array (
       0 => 'C:\\xampp\\htdocs\\projekt\\templates\\proizvodi_body.tpl',
-      1 => 1685040722,
+      1 => 1685044623,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_646fae55b21ed5_94704813 (Smarty_Internal_Template $_smarty_tpl) {
+function content_646fbd925f4594_02219677 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="wrapper">
   <main>
     <section>
@@ -72,7 +72,7 @@ if ((isset($_SESSION['uloga'])) && $_SESSION['uloga'] < 4 && (isset($_smarty_tpl
 ">
                 <div style="display:flex; flex-direction:column; align-items:center; justify-content:center;">
                 <input class="card-button" style="cursor:pointer;" type="submit" value="Kupi bodovima" name="kupibodovima"/>
-                <?php if ($_smarty_tpl->tpl_vars['IdModeratora']->value == $_smarty_tpl->tpl_vars['IDTrenutnogKorisnika']->value || $_smarty_tpl->tpl_vars['UlogaTrenutnogKorisnika']->value == 1) {?>
+                <?php if (($_smarty_tpl->tpl_vars['IdModeratora']->value == $_smarty_tpl->tpl_vars['IDTrenutnogKorisnika']->value && $_smarty_tpl->tpl_vars['proizvod']->value["ID_korisnik"] == $_smarty_tpl->tpl_vars['IDTrenutnogKorisnika']->value) || $_smarty_tpl->tpl_vars['UlogaTrenutnogKorisnika']->value == 1) {?>
                 <a href="<?php echo $_smarty_tpl->tpl_vars['putanja']->value;?>
 /obrasci/urediProizvod.php?proizvod=<?php echo $_smarty_tpl->tpl_vars['proizvod']->value['ID_proizvod'];?>
 " class="card-button">Uredi bodove</a>

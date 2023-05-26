@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.0, created on 2023-05-21 20:32:38
+/* Smarty version 4.3.0, created on 2023-05-26 14:21:28
   from 'C:\xampp\htdocs\projekt\templates\podnozje.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.0',
-  'unifunc' => 'content_646a63c6f256e2_17188615',
+  'unifunc' => 'content_6470a448afac62_75635246',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e065df308338033949ff6349fc9aecb653630680' => 
     array (
       0 => 'C:\\xampp\\htdocs\\projekt\\templates\\podnozje.tpl',
-      1 => 1683577354,
+      1 => 1685103556,
       2 => 'file',
     ),
   ),
@@ -20,54 +20,10 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_646a63c6f256e2_17188615 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6470a448afac62_75635246 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
-    <div class="povijest">
-  <h2>Povijest pregledavanja</h2>
-  <div class="povijestuflex">
-    <aside title="Početna stranica">
-      <a href="<?php echo $_smarty_tpl->tpl_vars['putanja']->value;?>
-/index.php">
-        <img src="<?php echo $_smarty_tpl->tpl_vars['putanja']->value;?>
-/multimedija/bmw-logo2.png" id="pocetnastranicaslika" alt="bmw logo" width="100" height="100" />
-      </a>
-    </aside>
-    <aside title="Autentikacija">
-      <a href="<?php echo $_smarty_tpl->tpl_vars['putanja']->value;?>
-/obrasci/autentikacija.php">
-        <img src="<?php echo $_smarty_tpl->tpl_vars['putanja']->value;?>
-/multimedija/autentikacija.png" id="autentikacijaslika" alt="autentikacija" width="100" height="100" />
-      </a>
-    </aside>
-    <aside title="Obrazac">
-      <a href="<?php echo $_smarty_tpl->tpl_vars['putanja']->value;?>
-/obrasci/obrazac.php">
-        <img src="<?php echo $_smarty_tpl->tpl_vars['putanja']->value;?>
-/multimedija/obrasci.png" id="obrascislika" alt="obrasci" width="100" height="100" />
-      </a>
-    </aside>
-    <aside title="Popis">
-      <a href="<?php echo $_smarty_tpl->tpl_vars['putanja']->value;?>
-/ostalo/popis.php">
-        <img src="<?php echo $_smarty_tpl->tpl_vars['putanja']->value;?>
-/multimedija/popis.png" id="popisslika" alt="popis" width="100" height="100" />
-      </a>
-    </aside>
-    <aside title="Multimedija">
-      <a href="<?php echo $_smarty_tpl->tpl_vars['putanja']->value;?>
-/ostalo/multimedija.php">
-        <img src="<?php echo $_smarty_tpl->tpl_vars['putanja']->value;?>
-/multimedija/multimedija.png" id="multimedijaslika" alt="multimedija" width="100" height="100" />
-      </a>
-    </aside>
-    <aside title="O autoru">
-      <a href="<?php echo $_smarty_tpl->tpl_vars['putanja']->value;?>
-/o_autoru.php">
-        <img src="<?php echo $_smarty_tpl->tpl_vars['putanja']->value;?>
-/multimedija/grgopenava.jpeg" id="oautoruslika" alt="o autoru" width="100" height="100" />
-      </a>
-    </aside>
-  </div>
+</main>
+    <div class="povijest" style="margin-top:2rem;">
   <footer>
       <a href="http://validator.w3.org/check?uri=https://barka.foi.hr/WebDiP/2022/zadaca_01/gpenava/index.html">
         <img class="html5-picture" src="<?php echo $_smarty_tpl->tpl_vars['putanja']->value;?>
@@ -94,7 +50,6 @@ function content_646a63c6f256e2_17188615 (Smarty_Internal_Template $_smarty_tpl)
     </footer>
 </div>
 </section>
-</main>
 </div>
 </body>
 

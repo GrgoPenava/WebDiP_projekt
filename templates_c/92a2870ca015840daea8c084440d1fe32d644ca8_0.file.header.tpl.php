@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.0, created on 2023-05-23 19:00:50
+/* Smarty version 4.3.0, created on 2023-05-26 13:59:42
   from 'C:\xampp\htdocs\projekt\templates\header.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.0',
-  'unifunc' => 'content_646cf142c691a2_49876773',
+  'unifunc' => 'content_64709f2e552519_47351090',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '92a2870ca015840daea8c084440d1fe32d644ca8' => 
     array (
       0 => 'C:\\xampp\\htdocs\\projekt\\templates\\header.tpl',
-      1 => 1684861249,
+      1 => 1685102380,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_646cf142c691a2_49876773 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64709f2e552519_47351090 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -62,17 +62,6 @@ function content_646cf142c691a2_49876773 (Smarty_Internal_Template $_smarty_tpl)
 >Njemački jezik</option>
                 </select>
             </form>
-            <a href="#pretrazivanje"><i class="fa fa-search" id="searchIcon"></i></a>
-            <div id="pretrazivanje">
-                <div class="popup-content">
-                    <a href="#"><i class="fa fa-close" id="exitIcon"></i></a>
-                    <form id="form1" method="post" name="form1" action="" novalidate>
-                        <label for="trazi">Pojam:</label>
-                        <input type="search" id="trazi" name="trazi" />
-                        <input type="submit" value="Pretraži" name="pretrazi" />
-                    </form>
-                </div>
-            </div>
         </div>
     </header><?php }
 }

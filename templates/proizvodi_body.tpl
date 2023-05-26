@@ -31,7 +31,7 @@
                 <input type="hidden" name="id_kampanje_iz_smarty" value="{$idkampanje}">
                 <div style="display:flex; flex-direction:column; align-items:center; justify-content:center;">
                 <input class="card-button" style="cursor:pointer;" type="submit" value="Kupi bodovima" name="kupibodovima"/>
-                {if $IdModeratora == $IDTrenutnogKorisnika || $UlogaTrenutnogKorisnika == 1}
+                {if ($IdModeratora == $IDTrenutnogKorisnika && $proizvod["ID_korisnik"] == $IDTrenutnogKorisnika) || $UlogaTrenutnogKorisnika == 1 }
                 <a href="{$putanja}/obrasci/urediProizvod.php?proizvod={$proizvod['ID_proizvod']}" class="card-button">Uredi bodove</a>
                 {/if}
                 </div>

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.0, created on 2023-05-23 13:24:46
+/* Smarty version 4.3.0, created on 2023-05-26 14:21:53
   from 'C:\xampp\htdocs\projekt\templates\autentikacija_body.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.0',
-  'unifunc' => 'content_646ca27e1c9369_48676716',
+  'unifunc' => 'content_6470a461540423_64191797',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '118e97b756aa1efa16b3f3e4bb18f21efb36f578' => 
     array (
       0 => 'C:\\xampp\\htdocs\\projekt\\templates\\autentikacija_body.tpl',
-      1 => 1684841085,
+      1 => 1685103712,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_646ca27e1c9369_48676716 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6470a461540423_64191797 (Smarty_Internal_Template $_smarty_tpl) {
 echo '<script'; ?>
  src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"><?php echo '</script'; ?>
 >
@@ -37,7 +37,7 @@ echo '<script'; ?>
  src="https://www.google.com/recaptcha/enterprise.js?render=6LeZFiwmAAAAAAj9RoXSYUJUnXXpz5ZOITLEvoZ4"><?php echo '</script'; ?>
 >
 <main>
-      <div class="autentikacijaclass" style="height: 30rem;">
+      <div class="autentikacijaclass" style="height: 40rem;">
         <section class="autentikacija" style="margin-top: 4rem;">
           <div class="registracijaiprijava">
             <div class="registracija">

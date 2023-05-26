@@ -12,6 +12,7 @@ Sesija::kreirajSesiju();
 
 if (isset($_GET["odjava"])) {
     Sesija::obrisiSesiju();
+    header("Location: ../index.php");
 }
 
 if (isset($_POST['jezici'])) {

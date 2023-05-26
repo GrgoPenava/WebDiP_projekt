@@ -4,7 +4,7 @@
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script src="https://www.google.com/recaptcha/enterprise.js?render=6LeZFiwmAAAAAAj9RoXSYUJUnXXpz5ZOITLEvoZ4"></script>
 <main>
-      <div class="autentikacijaclass" style="height: 30rem;">
+      <div class="autentikacijaclass" style="height: 40rem;">
         <section class="autentikacija" style="margin-top: 4rem;">
           <div class="registracijaiprijava">
             <div class="registracija">
