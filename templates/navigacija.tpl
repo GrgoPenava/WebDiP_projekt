@@ -9,6 +9,7 @@
 
         {if isset($smarty.session.uloga)&& $smarty.session.uloga == 1}
         <a href="{$putanja}/ostalo/proizvodiPopis.php">Proizvodi</a>
+        <a href="{$putanja}/ostalo/popisSvihKorisnika.php">Admin</a>
         {/if}
         {if isset($smarty.session.uloga)&& $smarty.session.uloga < 4}
             <a href="{$putanja}/ostalo/profil.php">Profil</a>

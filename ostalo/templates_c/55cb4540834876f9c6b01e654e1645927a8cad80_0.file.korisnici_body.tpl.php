@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.0, created on 2023-05-26 21:39:06
+/* Smarty version 4.3.0, created on 2023-05-27 14:35:58
   from 'C:\xampp\htdocs\projekt\templates\korisnici_body.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.0',
-  'unifunc' => 'content_64710ada9076a2_01102310',
+  'unifunc' => 'content_6471f92e72a473_67210185',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '55cb4540834876f9c6b01e654e1645927a8cad80' => 
     array (
       0 => 'C:\\xampp\\htdocs\\projekt\\templates\\korisnici_body.tpl',
-      1 => 1685129943,
+      1 => 1685190956,
       2 => 'file',
     ),
   ),
@@ -20,20 +20,35 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_64710ada9076a2_01102310 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6471f92e72a473_67210185 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="datumform" style="padding-bottom:2rem;">
               <form id="formDatum" method="POST" name="form3" novalidate>
               <div style="display:flex; align-items:center; gap:0.2rem;">
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" ><br/>
               </div>
-                <input id="usernameButton" type="submit" value="Filtriraj" name="usernameButton" style="align-items:center"/>
+                <input id="datumButton" type="submit" value="Filtriraj" name="usernameButton" style="align-items:center"/>
+              </form>
+  </div>
+  <div class="datumform" style="padding-bottom:2rem;">
+              <form id="formDatum" method="POST" name="form3" novalidate>
+              <div style="display:flex; align-items:center; gap:0.2rem;">
+                <label for="username">Prezime:</label>
+                <input type="text" id="username" name="prezime" ><br/>
+              </div>
+                <input id="datumButton" type="submit" value="Filtriraj" name="prezimeButton" style="align-items:center"/>
               </form>
   </div>
 <?php if ($_smarty_tpl->tpl_vars['korisnici']->value) {?>
-<div style="display:flex; align-items:center; justify-content:center; gap:0.2rem; padding-bottom:2rem;">
-<button id="usernameButton" style="align-items:center; cursor:pointer;" onclick="sortirajTablicuAZ()">A-Z</button>
-<button id="usernameButton" style="align-items:center; cursor:pointer;" onclick="sortirajTablicuZA()">Z-A</button>
+<div style="display:flex; align-items:center; justify-content:center; gap:2rem; padding-bottom:2rem;">
+<div style="display:flex; flex-direction:column; gap: 0.3rem">
+<button id="datumButton" style="align-items:center; cursor:pointer;" onclick="sortirajTablicuAZ()">Username (A-Z)</button>
+<button id="datumButton" style="align-items:center; cursor:pointer;" onclick="sortirajTablicuZA()">Username (Z-A)</button>
+</div>
+<div style="display:flex; flex-direction:column; gap: 0.3rem">
+<button id="datumButton" style="align-items:center; cursor:pointer;" onclick="sortirajTablicuBrojAZ()">Ime (A-Z)</button>
+<button id="datumButton" style="align-items:center; cursor:pointer;" onclick="sortirajTablicuBrojZA()">Ime (Z-A)</button>
+</div>
 </div>
 <h1 style="display:flex; justify-content: center;">Popis korisnika koji imaju kreiran profil</h1>
 <div style="display:flex; justify-content: center;">
@@ -129,6 +144,44 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
     }
   }
 }
+  function sortirajTablicuBrojAZ() {
+    var tabl, redovi, promjena, i, x, y;
+    tabl = document.getElementById("mojaTablica");
+    promjena = true;
+    while (promjena) {
+      promjena = false;
+      redovi = tabl.rows;
+      for (i = 1; i < (redovi.length - 1); i++) {
+        x = redovi[i].getElementsByTagName("TD")[2];
+        y = redovi[i + 1].getElementsByTagName("TD")[2];
+        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+          redovi[i].parentNode.insertBefore(redovi[i + 1], redovi[i]);
+          promjena = true;
+          break;
+        }
+      }
+    }
+  }
+
+  function sortirajTablicuBrojZA() {
+  var tabl, redovi, promjena, i, x, y;
+  tabl = document.getElementById("mojaTablica");
+  promjena = true;
+  while (promjena) {
+    promjena = false;
+    redovi = tabl.rows;
+    for (i = 1; i < (redovi.length - 1); i++) {
+      x = redovi[i].getElementsByTagName("TD")[2];
+      y = redovi[i + 1].getElementsByTagName("TD")[2];
+      if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+        redovi[i].parentNode.insertBefore(redovi[i + 1], redovi[i]);
+        promjena = true;
+        break;
+      }
+    }
+  }
+}
+
 <?php echo '</script'; ?>
 ><?php }
 }

@@ -1,4 +1,27 @@
-<div class="datumform" style="padding-bottom:2rem;">
+<?php
+/* Smarty version 4.3.0, created on 2023-05-27 17:29:51
+  from 'C:\xampp\htdocs\projekt\templates\popisSvihKorisnika.tpl' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '4.3.0',
+  'unifunc' => 'content_647221ef5c0d79_86488273',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '52e1c6fe3b9db45cf24e47f046f34945329ddc7a' => 
+    array (
+      0 => 'C:\\xampp\\htdocs\\projekt\\templates\\popisSvihKorisnika.tpl',
+      1 => 1685201390,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_647221ef5c0d79_86488273 (Smarty_Internal_Template $_smarty_tpl) {
+?><div class="datumform" style="padding-bottom:2rem;">
               <form id="formDatum" method="POST" name="form3" novalidate>
               <div style="display:flex; align-items:center; gap:0.2rem;">
                 <label for="username">Username:</label>
@@ -16,7 +39,7 @@
                 <input id="datumButton" type="submit" value="Filtriraj" name="prezimeButton" style="align-items:center"/>
               </form>
   </div>
-{if $korisnici}
+<?php if ($_smarty_tpl->tpl_vars['korisnici']->value) {?>
 <div style="display:flex; align-items:center; justify-content:center; gap:2rem; padding-bottom:2rem;">
 <div style="display:flex; flex-direction:column; gap: 0.3rem">
 <button id="datumButton" style="align-items:center; cursor:pointer;" onclick="sortirajTablicuAZ()">Username (A-Z)</button>
@@ -36,39 +59,81 @@
                   <th>Username</th>
                   <th>Ime</th>
                   <th>Prezime</th>
-                {if isset($uloga) && $uloga == 1}
+                  <th>Datum registracije</th>
+                  <th>Broj bodova</th>
+                  <th>Aktiviran račun</th>
+                  <th>Zaključan račun</th>
+                <?php if ((isset($_smarty_tpl->tpl_vars['uloga']->value)) && $_smarty_tpl->tpl_vars['uloga']->value == 1) {?>
                 <th></th>
-                {/if}
+                <?php }?>
                 </tr>
               </thead>
               <tbody>
-  {foreach from=$korisnici item=redak}
+  <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['korisnici']->value, 'redak');
+$_smarty_tpl->tpl_vars['redak']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['redak']->value) {
+$_smarty_tpl->tpl_vars['redak']->do_else = false;
+?>
       <tr>
-      <td>{$redak.email}</td>
-      <td>{$redak.username}</td>
-      <td>{$redak.ime}</td>
-      <td>{$redak.prezime}</td>
-      {if isset($uloga) && $uloga == 1}
-      <td id="urediUlogu"><a href="{$putanja}/obrasci/urediKorisnikUloga.php?korisnik={$redak.ID_korisnik}" class="card-button">Uredi</a></td>
-      {/if}
+      <td><?php echo $_smarty_tpl->tpl_vars['redak']->value['email'];?>
+</td>
+      <td><?php echo $_smarty_tpl->tpl_vars['redak']->value['username'];?>
+</td>
+      <td><?php echo $_smarty_tpl->tpl_vars['redak']->value['ime'];?>
+</td>
+      <td><?php echo $_smarty_tpl->tpl_vars['redak']->value['prezime'];?>
+</td>
+      <td><?php echo $_smarty_tpl->tpl_vars['redak']->value['datum_registracije'];?>
+</td>
+      <td><?php echo $_smarty_tpl->tpl_vars['redak']->value['broj_bodova'];?>
+</td>
+      <td><?php if ($_smarty_tpl->tpl_vars['redak']->value['aktiviran_racun'] == 0) {?>
+        Nije aktiviran
+      <?php } elseif ($_smarty_tpl->tpl_vars['redak']->value['aktiviran_racun'] == 1) {?>
+        Aktiviran
+      <?php } else { ?>
+        -
+      <?php }?></td>
+      <td><?php if ($_smarty_tpl->tpl_vars['redak']->value['blokiran'] == 0) {?>
+        Nije zaključan
+      <?php } elseif ($_smarty_tpl->tpl_vars['redak']->value['blokiran'] == 1) {?>
+        Zaključan
+      <?php } else { ?>
+        -
+      <?php }?></td>
+      <?php if ((isset($_smarty_tpl->tpl_vars['uloga']->value)) && $_smarty_tpl->tpl_vars['uloga']->value == 1 && $_smarty_tpl->tpl_vars['redak']->value['blokiran'] == 0) {?>
+      <td id="urediUlogu"><a href="<?php echo $_smarty_tpl->tpl_vars['putanja']->value;?>
+/ostalo/popisSvihKorisnika.php?korisnikZakljucaj=<?php echo $_smarty_tpl->tpl_vars['redak']->value['ID_korisnik'];?>
+" class="card-button-red">Zaključaj</a></td>
+      <?php }?>
+      <?php if ((isset($_smarty_tpl->tpl_vars['uloga']->value)) && $_smarty_tpl->tpl_vars['uloga']->value == 1 && $_smarty_tpl->tpl_vars['redak']->value['blokiran'] == 1) {?>
+      <td id="urediUlogu"><a href="<?php echo $_smarty_tpl->tpl_vars['putanja']->value;?>
+/ostalo/popisSvihKorisnika.php?korisnikOtkljucaj=<?php echo $_smarty_tpl->tpl_vars['redak']->value['ID_korisnik'];?>
+" class="card-button">Otključaj</a></td>
+      <?php }?>
     </tr>
-  {/foreach}
+  <?php
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
               </tbody>
               <tfoot>
-              {if $brojacZapisa >0}
+              <?php if ($_smarty_tpl->tpl_vars['brojacZapisa']->value > 0) {?>
                 <tr class="footertablice">
-                  <td colspan="10">Ukupno zapisa: {$brojacZapisa}</td>
+                  <td colspan="10">Ukupno zapisa: <?php echo $_smarty_tpl->tpl_vars['brojacZapisa']->value;?>
+</td>
                 </tr>
-                {/if}
+                <?php }?>
               </tfoot>
             </table>
 </div>
-{else}
+<?php } else { ?>
 <p style="display:flex; justify-content: center; font-size:large; font-weight:bolder;">Nema korisnika u bazi podataka.</p>
-{/if}
+<?php }?>
 <div style="min-height:29rem; min-width:98vw;"></div>
 
-<script type="text/javascript">
+<?php echo '<script'; ?>
+ type="text/javascript">
   function sortirajTablicuAZ() {
     var tabl, redovi, promjena, i, x, y;
     tabl = document.getElementById("mojaTablica");
@@ -144,4 +209,6 @@
   }
 }
 
-</script>
+<?php echo '</script'; ?>
+><?php }
+}

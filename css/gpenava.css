@@ -725,10 +725,10 @@ th{
   overflow: hidden;
 }
 
-.card img {
+/* .card img {
   width: 100%;
   height: auto;
-}
+} */
 
 .card-content {
   padding: 16px;
@@ -749,6 +749,15 @@ th{
   display: inline-block;
   padding: 8px 16px;
   background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.card-button-red {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #e72121;
   color: #fff;
   text-decoration: none;
   border-radius: 4px;

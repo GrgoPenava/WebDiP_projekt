@@ -28,7 +28,7 @@ if (isset($_SESSION["uloga"])) {
 }
 
 $moderatori = array();
-$upitModeratori = "SELECT k.ID_korisnik, k.username, COUNT(*) AS broj_prodanih_proizvoda FROM kupio kpo JOIN proizvod p ON kpo.ID_proizvod = p.ID_proizvod JOIN korisnik k ON p.ID_korisnik = k.ID_korisnik GROUP BY k.ID_korisnik, k.username;";
+$upitModeratori = "SELECT k.ID_korisnik, k.username, k.email, COUNT(*) AS broj_prodanih_proizvoda FROM kupio kpo JOIN proizvod p ON kpo.ID_proizvod = p.ID_proizvod JOIN korisnik k ON p.ID_korisnik = k.ID_korisnik GROUP BY k.ID_korisnik, k.username;";
 $rezultatModeratori = $veza->selectDB($upitModeratori);
 if ($rezultatModeratori->num_rows > 0) {
     while ($redakModeratori = $rezultatModeratori->fetch_assoc()) {
@@ -39,6 +39,74 @@ if ($rezultatModeratori->num_rows > 0) {
 $brojac = count($moderatori);
 if ($brojac > 0) {
     $smarty->assign('brojacZapisa', $brojac);
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['usernameButton'])) {
+    $usernameKojiTrazi = $_POST['username'];
+    if (strlen($usernameKojiTrazi) > 0) {
+        $upit = "SELECT k.ID_korisnik, k.username, k.email, COUNT(*) AS broj_prodanih_proizvoda FROM kupio kpo JOIN proizvod p ON kpo.ID_proizvod = p.ID_proizvod JOIN korisnik k ON p.ID_korisnik = k.ID_korisnik GROUP BY k.ID_korisnik, k.username;";
+        $rezultat = $veza->selectDB($upit);
+        $korisnici = array();
+        if ($rezultat->num_rows > 0) {
+            while ($redak = $rezultat->fetch_assoc()) {
+                $korisnici[] = $redak;
+            }
+        }
+        foreach ($korisnici as $kljuc => $vrijednost) {
+            if (strpos($vrijednost["username"], $usernameKojiTrazi) === false) {
+                unset($korisnici[$kljuc]);
+            }
+        }
+        $brojZapisa = count($korisnici);
+        $smarty->assign('korisnici', $korisnici);
+        $smarty->assign('brojacZapisa', $brojZapisa);
+    } else {
+        $upit = "SELECT k.ID_korisnik, k.username, k.email, COUNT(*) AS broj_prodanih_proizvoda FROM kupio kpo JOIN proizvod p ON kpo.ID_proizvod = p.ID_proizvod JOIN korisnik k ON p.ID_korisnik = k.ID_korisnik GROUP BY k.ID_korisnik, k.username;";
+        $rezultat = $veza->selectDB($upit);
+        $korisnici = array();
+        if ($rezultat->num_rows > 0) {
+            while ($redak = $rezultat->fetch_assoc()) {
+                $korisnici[] = $redak;
+            }
+        }
+        $brojZapisa = count($korisnici);
+        $smarty->assign('korisnici', $korisnici);
+        $smarty->assign('brojacZapisa', $brojZapisa);
+    }
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['emailButton'])) {
+    $usernameKojiTrazi = $_POST['email'];
+    if (strlen($usernameKojiTrazi) > 0) {
+        $upit = "SELECT k.ID_korisnik, k.username, k.email, COUNT(*) AS broj_prodanih_proizvoda FROM kupio kpo JOIN proizvod p ON kpo.ID_proizvod = p.ID_proizvod JOIN korisnik k ON p.ID_korisnik = k.ID_korisnik GROUP BY k.ID_korisnik, k.username;";
+        $rezultat = $veza->selectDB($upit);
+        $korisnici = array();
+        if ($rezultat->num_rows > 0) {
+            while ($redak = $rezultat->fetch_assoc()) {
+                $korisnici[] = $redak;
+            }
+        }
+        foreach ($korisnici as $kljuc => $vrijednost) {
+            if (strpos($vrijednost["email"], $usernameKojiTrazi) === false) {
+                unset($korisnici[$kljuc]);
+            }
+        }
+        $brojZapisa = count($korisnici);
+        $smarty->assign('korisnici', $korisnici);
+        $smarty->assign('brojacZapisa', $brojZapisa);
+    } else {
+        $upit = "SELECT k.ID_korisnik, k.username, k.email, COUNT(*) AS broj_prodanih_proizvoda FROM kupio kpo JOIN proizvod p ON kpo.ID_proizvod = p.ID_proizvod JOIN korisnik k ON p.ID_korisnik = k.ID_korisnik GROUP BY k.ID_korisnik, k.username;";
+        $rezultat = $veza->selectDB($upit);
+        $korisnici = array();
+        if ($rezultat->num_rows > 0) {
+            while ($redak = $rezultat->fetch_assoc()) {
+                $korisnici[] = $redak;
+            }
+        }
+        $brojZapisa = count($korisnici);
+        $smarty->assign('korisnici', $korisnici);
+        $smarty->assign('brojacZapisa', $brojZapisa);
+    }
 }
 
 

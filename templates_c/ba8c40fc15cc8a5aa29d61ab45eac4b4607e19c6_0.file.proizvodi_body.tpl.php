@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.0, created on 2023-05-25 21:57:06
+/* Smarty version 4.3.0, created on 2023-05-27 13:43:56
   from 'C:\xampp\htdocs\projekt\templates\proizvodi_body.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.0',
-  'unifunc' => 'content_646fbd925f4594_02219677',
+  'unifunc' => 'content_6471ecfcb2d1a2_02685994',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ba8c40fc15cc8a5aa29d61ab45eac4b4607e19c6' => 
     array (
       0 => 'C:\\xampp\\htdocs\\projekt\\templates\\proizvodi_body.tpl',
-      1 => 1685044623,
+      1 => 1685187835,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_646fbd925f4594_02219677 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6471ecfcb2d1a2_02685994 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="wrapper">
   <main>
     <section>
@@ -51,6 +51,11 @@ $_smarty_tpl->tpl_vars['proizvod']->do_else = false;
  kn.</p>
                 <p class="card-description">Kupnjom ovog proizvoda dobijete <?php echo $_smarty_tpl->tpl_vars['proizvod']->value['bodovi_za_kupovinu'];?>
  bodova</p>
+                <?php $_smarty_tpl->_assignInScope('slikaConvert', base64_encode($_smarty_tpl->tpl_vars['proizvod']->value['slika']));?>
+                <div style="display:flex; justify-items:center; align-items:center; justify-content:center;">
+                <img src="data:image/jpeg;base64,<?php echo $_smarty_tpl->tpl_vars['slikaConvert']->value;?>
+" height=100 width=100 />
+                </div>
                 <?php ob_start();
 echo $_smarty_tpl->tpl_vars['proizvod']->value['kolicina'];
 $_prefixVariable1 = ob_get_clean();

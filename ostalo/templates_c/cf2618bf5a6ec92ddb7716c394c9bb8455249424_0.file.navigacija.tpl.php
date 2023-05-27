@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.0, created on 2023-05-26 18:32:55
+/* Smarty version 4.3.0, created on 2023-05-27 14:52:27
   from 'C:\xampp\htdocs\projekt\templates\navigacija.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.0',
-  'unifunc' => 'content_6470df37807999_73186043',
+  'unifunc' => 'content_6471fd0bc7cf56_98876328',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'cf2618bf5a6ec92ddb7716c394c9bb8455249424' => 
     array (
       0 => 'C:\\xampp\\htdocs\\projekt\\templates\\navigacija.tpl',
-      1 => 1685118763,
+      1 => 1685191945,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6470df37807999_73186043 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6471fd0bc7cf56_98876328 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="izbornik"><nav>
         <a href="<?php echo $_smarty_tpl->tpl_vars['putanja']->value;?>
 /index.php">Kampanje</a>
@@ -36,6 +36,8 @@ function content_6470df37807999_73186043 (Smarty_Internal_Template $_smarty_tpl)
         <?php if ((isset($_SESSION['uloga'])) && $_SESSION['uloga'] == 1) {?>
         <a href="<?php echo $_smarty_tpl->tpl_vars['putanja']->value;?>
 /ostalo/proizvodiPopis.php">Proizvodi</a>
+        <a href="<?php echo $_smarty_tpl->tpl_vars['putanja']->value;?>
+/ostalo/popisSvihKorisnika.php">Admin</a>
         <?php }?>
         <?php if ((isset($_SESSION['uloga'])) && $_SESSION['uloga'] < 4) {?>
             <a href="<?php echo $_smarty_tpl->tpl_vars['putanja']->value;?>

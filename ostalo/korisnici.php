@@ -70,6 +70,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['usernameButton'])) {
   }
 }
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['prezimeButton'])) {
+  $usernameKojiTrazi = $_POST['prezime'];
+  if (strlen($usernameKojiTrazi) > 0) {
+    $upit = "SELECT * from korisnik WHERE ID_profil IS NOT NULL";
+    $rezultat = $veza->selectDB($upit);
+    $korisnici = array();
+    if ($rezultat->num_rows > 0) {
+      while ($redak = $rezultat->fetch_assoc()) {
+        $korisnici[] = $redak;
+      }
+    }
+    foreach ($korisnici as $kljuc => $vrijednost) {
+      if (strpos($vrijednost["prezime"], $usernameKojiTrazi) === false) {
+        unset($korisnici[$kljuc]);
+      }
+    }
+    $brojZapisa = count($korisnici);
+    $smarty->assign('korisnici', $korisnici);
+    $smarty->assign('brojacZapisa', $brojZapisa);
+  } else {
+    $upit = "SELECT * from korisnik WHERE ID_profil IS NOT NULL";
+    $rezultat = $veza->selectDB($upit);
+    $korisnici = array();
+    if ($rezultat->num_rows > 0) {
+      while ($redak = $rezultat->fetch_assoc()) {
+        $korisnici[] = $redak;
+      }
+    }
+    $brojZapisa = count($korisnici);
+    $smarty->assign('korisnici', $korisnici);
+    $smarty->assign('brojacZapisa', $brojZapisa);
+  }
+}
+
 $brojZapisa = count($korisnici);
 $smarty->assign('brojacZapisa', $brojZapisa);
 $smarty->assign('korisnici', $korisnici);

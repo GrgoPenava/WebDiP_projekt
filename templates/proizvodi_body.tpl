@@ -17,6 +17,10 @@
                 <p class="card-description">Cijena u bodovima: {$proizvod['cijena_u_bodovima']}</p>
                 <p class="card-description">Cijena: {$proizvod['cijena']} kn.</p>
                 <p class="card-description">Kupnjom ovog proizvoda dobijete {$proizvod['bodovi_za_kupovinu']} bodova</p>
+                {assign var="slikaConvert" value=$proizvod['slika']|base64_encode}
+                <div style="display:flex; justify-items:center; align-items:center; justify-content:center;">
+                <img src="data:image/jpeg;base64,{$slikaConvert}" height=100 width=100 />
+                </div>
                 {if isset($smarty.session.uloga) && $smarty.session.uloga < 4 && isset($imaprofil) && {$proizvod['kolicina']} > 0}
                 <form id="kupinovcem" method="POST" name="kupinovcem" action="" novalidate>
                 <input type="hidden" name="id_proizvod" value="{$proizvod['ID_proizvod']}">

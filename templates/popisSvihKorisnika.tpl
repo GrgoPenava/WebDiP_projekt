@@ -36,6 +36,10 @@
                   <th>Username</th>
                   <th>Ime</th>
                   <th>Prezime</th>
+                  <th>Datum registracije</th>
+                  <th>Broj bodova</th>
+                  <th>Aktiviran račun</th>
+                  <th>Zaključan račun</th>
                 {if isset($uloga) && $uloga == 1}
                 <th></th>
                 {/if}
@@ -48,8 +52,27 @@
       <td>{$redak.username}</td>
       <td>{$redak.ime}</td>
       <td>{$redak.prezime}</td>
-      {if isset($uloga) && $uloga == 1}
-      <td id="urediUlogu"><a href="{$putanja}/obrasci/urediKorisnikUloga.php?korisnik={$redak.ID_korisnik}" class="card-button">Uredi</a></td>
+      <td>{$redak.datum_registracije}</td>
+      <td>{$redak.broj_bodova}</td>
+      <td>{if $redak.aktiviran_racun == 0}
+        Nije aktiviran
+      {elseif $redak.aktiviran_racun == 1}
+        Aktiviran
+      {else}
+        -
+      {/if}</td>
+      <td>{if $redak.blokiran == 0}
+        Nije zaključan
+      {elseif $redak.blokiran == 1}
+        Zaključan
+      {else}
+        -
+      {/if}</td>
+      {if isset($uloga) && $uloga == 1 && $redak.blokiran == 0}
+      <td id="urediUlogu"><a href="{$putanja}/ostalo/popisSvihKorisnika.php?korisnikZakljucaj={$redak.ID_korisnik}" class="card-button-red">Zaključaj</a></td>
+      {/if}
+      {if isset($uloga) && $uloga == 1 && $redak.blokiran == 1}
+      <td id="urediUlogu"><a href="{$putanja}/ostalo/popisSvihKorisnika.php?korisnikOtkljucaj={$redak.ID_korisnik}" class="card-button">Otključaj</a></td>
       {/if}
     </tr>
   {/foreach}
