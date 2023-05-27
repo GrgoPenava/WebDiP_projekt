@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.0, created on 2023-05-26 14:21:53
+/* Smarty version 4.3.0, created on 2023-05-27 21:01:03
   from 'C:\xampp\htdocs\projekt\templates\autentikacija_body.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.0',
-  'unifunc' => 'content_6470a461540423_64191797',
+  'unifunc' => 'content_6472536f7c7195_94545740',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '118e97b756aa1efa16b3f3e4bb18f21efb36f578' => 
     array (
       0 => 'C:\\xampp\\htdocs\\projekt\\templates\\autentikacija_body.tpl',
-      1 => 1685103712,
+      1 => 1685214056,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6470a461540423_64191797 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6472536f7c7195_94545740 (Smarty_Internal_Template $_smarty_tpl) {
 echo '<script'; ?>
  src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"><?php echo '</script'; ?>
 >
@@ -190,7 +190,7 @@ provjeraSvihParametara();
   function checkEmail() {
     let email = document.getElementById('email').value;
     $.ajax({
-                url: '../privatno/email_provjera.php',
+                url: '../ostalo/email_provjera.php',
                 type: 'POST',
                 dataType: 'json',
                 data: { email: email },
@@ -219,7 +219,7 @@ provjeraSvihParametara();
   function checkUsername() {
     let username = document.getElementById('username').value;
     $.ajax({
-                url: '../privatno/username_provjera.php',
+                url: '../ostalo/username_provjera.php',
                 type: 'POST',
                 dataType: 'json',
                 data: { username: username },

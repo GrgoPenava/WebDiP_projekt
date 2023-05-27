@@ -6,6 +6,20 @@ $veza = new Baza();
 $veza->spojiDb();
 $putanja = dirname(dirname($_SERVER['REQUEST_URI']));
 $smarty = new Smarty();
+
+$trenutniKorisnik = array();
+if (isset($_SESSION["uloga"])) {
+    $smarty->assign('uloga', $_SESSION["uloga"]);
+    $trenutniEmail = $_SESSION["korisnik"];
+    $upitkorisnik = "SELECT * from korisnik WHERE email = '$trenutniEmail'";
+    $rezultatkorisnik = $veza->selectDB($upitkorisnik);
+    if ($rezultatkorisnik->num_rows > 0) {
+        while ($redakkorisnik = $rezultatkorisnik->fetch_assoc()) {
+            $trenutniKorisnik = $redakkorisnik;
+        }
+    }
+}
+
 if (isset($_POST['jezici'])) {
     $odabraniJezik = $_POST['jezici'];
     $_SESSION['odabrani_jezik'] = $_POST['jezici'];
@@ -108,6 +122,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['korisnikZakljucaj'])) {
     $idKorisnikaZaPromjenuu = $_GET["korisnikZakljucaj"];
     $upitPromjenaKorisnikBlokiran = "UPDATE korisnik SET blokiran=1 WHERE ID_korisnik = '$idKorisnikaZaPromjenuu'";
     $rezultatPromjenaKorisnikBlokiran = $veza->selectDB($upitPromjenaKorisnikBlokiran);
+    $trenutniDatumIVrijemeZaDnevnik = date('Y-m-d H:i:s');
+    $upitDnevnik = "INSERT INTO dnevnik_rada (ID_korisnik, datum_i_vrijeme_zapisa, radnja,opis) VALUES ('$trenutniKorisnik[ID_korisnik]','$trenutniDatumIVrijemeZaDnevnik','Zakljucavanje profila','Zakljucan profil: $idKorisnikaZaPromjenuu')";
+    $rezultatDnevnik = $veza->selectDB($upitDnevnik);
     header("Location:" . $putanja . "/ostalo/popisSvihKorisnika.php");
 }
 
@@ -115,6 +132,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['korisnikOtkljucaj'])) {
     $idKorisnikaZaPromjenuu = $_GET["korisnikOtkljucaj"];
     $upitPromjenaKorisnikBlokiran = "UPDATE korisnik SET blokiran=0 WHERE ID_korisnik = '$idKorisnikaZaPromjenuu'";
     $rezultatPromjenaKorisnikBlokiran = $veza->selectDB($upitPromjenaKorisnikBlokiran);
+    $trenutniDatumIVrijemeZaDnevnik = date('Y-m-d H:i:s');
+    $upitDnevnik = "INSERT INTO dnevnik_rada (ID_korisnik, datum_i_vrijeme_zapisa, radnja,opis) VALUES ('$trenutniKorisnik[ID_korisnik]','$trenutniDatumIVrijemeZaDnevnik','Otkljucavanje profila','Otkljucan profil: $idKorisnikaZaPromjenuu')";
+    $rezultatDnevnik = $veza->selectDB($upitDnevnik);
     header("Location:" . $putanja . "/ostalo/popisSvihKorisnika.php");
 }
 
@@ -124,9 +144,7 @@ $smarty->assign('korisnici', $korisnici);
 $smarty->assign('naslov', "Korisnici s profilom");
 $smarty->assign('putanja', $putanja);
 $smarty->display('../templates/header.tpl');
-if (isset($_SESSION["uloga"])) {
-    $smarty->assign('uloga', $_SESSION["uloga"]);
-}
+
 $smarty->display('../templates/navigacija.tpl');
 $smarty->display('../templates/popisSvihKorisnika.tpl');
 $smarty->display('../templates/podnozje.tpl');

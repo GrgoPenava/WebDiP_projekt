@@ -76,6 +76,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['kreirajProizvod'])) {
     }
     $upitUrediProizvod = "INSERT INTO proizvod (naziv,naziv_eng,opis,opis_eng,slika,kolicina,cijena,cijena_eng,cijena_u_bodovima,bodovi_za_kupovinu,id_status_proizvoda,ID_tip_proizvoda,ID_korisnik) VALUES ('$naziv','$naziv_eng','$opis','$opis_eng','$blobFormat','$kolicina','$cijena','$cijena_eng','$cijena_u_bodovima','$bodovi_za_kupovinu','$status','$tip','$moderator')";
     $rezultatUrediProizvod = $veza->selectDB($upitUrediProizvod);
+    $trenutniDatumIVrijemeZaDnevnik = date('Y-m-d H:i:s');
+    $upitDnevnik = "INSERT INTO dnevnik_rada (ID_korisnik, datum_i_vrijeme_zapisa, radnja, opis) VALUES ('$trenutniKorisnik[ID_korisnik]','$trenutniDatumIVrijemeZaDnevnik','Kreiranje proizvoda','Proizvod: $naziv')";
+    $rezultatDnevnik = $veza->selectDB($upitDnevnik);
     header("Location:" . $putanja . "/ostalo/proizvodiPopis.php");
 }
 

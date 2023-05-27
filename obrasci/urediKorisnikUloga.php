@@ -56,6 +56,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['urediUloguKorisnika']
     var_dump($ulogaNova);
     $upitUrediUlogu = "UPDATE korisnik SET ID_uloga = '$ulogaNova' WHERE ID_korisnik = '$IDkorisnikaZaUrediti'";
     $rezultatUredivanjaUloge = $veza->selectDB($upitUrediUlogu);
+    $trenutniDatumIVrijemeZaDnevnik = date('Y-m-d H:i:s');
+    $upitDnevnik = "INSERT INTO dnevnik_rada (ID_korisnik, datum_i_vrijeme_zapisa, radnja,opis) VALUES ('$trenutniKorisnik[ID_korisnik]','$trenutniDatumIVrijemeZaDnevnik','Promjena uloge','Uloga: $ulogaNova, Korisnik: $IDkorisnikaZaUrediti')";
+    $rezultatDnevnik = $veza->selectDB($upitDnevnik);
     header("Location:" . $putanja . "/index.php");
 }
 

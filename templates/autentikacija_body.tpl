@@ -141,7 +141,7 @@ provjeraSvihParametara();
   function checkEmail() {
     let email = document.getElementById('email').value;
     $.ajax({
-                url: '../privatno/email_provjera.php',
+                url: '../ostalo/email_provjera.php',
                 type: 'POST',
                 dataType: 'json',
                 data: { email: email },
@@ -170,7 +170,7 @@ provjeraSvihParametara();
   function checkUsername() {
     let username = document.getElementById('username').value;
     $.ajax({
-                url: '../privatno/username_provjera.php',
+                url: '../ostalo/username_provjera.php',
                 type: 'POST',
                 dataType: 'json',
                 data: { username: username },

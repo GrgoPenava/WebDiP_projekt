@@ -43,6 +43,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['prijavaButton'])) {
       while ($redak = $rezultat->fetch_assoc()) {
         if ($redak["blokiran"] == 0) {
           Sesija::kreirajKorisnika($redak["email"], $redak["ID_uloga"]);
+
+          $trenutniDatumIVrijemeZaDnevnik = date('Y-m-d H:i:s');
+          $upitDnevnik = "INSERT INTO dnevnik_rada (ID_korisnik, datum_i_vrijeme_zapisa, radnja) VALUES ('$redak[ID_korisnik]','$trenutniDatumIVrijemeZaDnevnik','Prijava')";
+          $rezultatDnevnik = $veza->selectDB($upitDnevnik);
+
           $upit2 = "UPDATE korisnik SET broj_neuspjesnih_prijava = 0 WHERE email='$email' AND lozinka='$lozinka'";
           $rezultat2 = $veza->selectDB($upit2);
           if (isset($zapamti)) {
@@ -142,6 +147,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['registracijaButton']) 
       $upit = "INSERT INTO korisnik (ime,prezime,username,lozinka,lozinka_sha256,email,spol,ID_uloga,datum_registracije,aktivacijski_kod) VALUES ('$ime','$prezime','$username','$lozinka','$lozinka_kriptirana','$email','$spol',3,'$trenutnoVrijeme','$aktivacijski_kod')";
       $rezultat = $veza->selectDB($upit);
       if ($rezultat) {
+
+        $upitIDregistriranog = "SELECT ID_korisnik FROM korisnik ORDER BY ID_korisnik DESC LIMIT 1";
+        $rezultatIDregistriranog = $veza->selectDB($upitIDregistriranog);
+        if ($rezultatIDregistriranog->num_rows > 0) {
+          while ($redakIDzaDnevnik = $rezultatIDregistriranog->fetch_assoc()) {
+            var_dump($redakIDzaDnevnik);
+            $trenutniDatumIVrijemeZaDnevnik = date('Y-m-d H:i:s');
+            var_dump($trenutniDatumIVrijemeZaDnevnik);
+            $upitDnevnik = "INSERT INTO dnevnik_rada (ID_korisnik, datum_i_vrijeme_zapisa, radnja) VALUES ('$redakIDzaDnevnik[ID_korisnik]','$trenutniDatumIVrijemeZaDnevnik','Registracija')";
+            $rezultatDnevnik = $veza->selectDB($upitDnevnik);
+          }
+        }
+
+
+
         $to = $email;
         $subject = "Aktivacija profila";
         $message = '

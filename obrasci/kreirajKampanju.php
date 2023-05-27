@@ -60,6 +60,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['kreirajKampanju'])) {
     $upitUnosKampanjeUbazu = "INSERT INTO kampanja (naziv,naziv_eng,opis,opis_eng,datum_i_vrijeme_pocetka,datum_i_vrijeme_zavrsetka,ID_tip_kampanje,ID_korisnik)
      VALUES ('$naziv','$nazivEng','$opis','$opisEng','$datumIVrijemePocetka','$datumIVrijemeZavrsetka','$tipKampanje','$idTrenutnogKorisnika')";
     $rezultatUnosaUbazuKampanje = $veza->selectDB($upitUnosKampanjeUbazu);
+    $trenutniDatumIVrijemeZaDnevnik = date('Y-m-d H:i:s');
+    $upitDnevnik = "INSERT INTO dnevnik_rada (ID_korisnik, datum_i_vrijeme_zapisa, radnja,opis) VALUES ('$idTrenutnogKorisnika','$trenutniDatumIVrijemeZaDnevnik','Kreiranje kampanje','Kampanja: $naziv')";
+    $rezultatDnevnik = $veza->selectDB($upitDnevnik);
     $upitZadnjiID = "SELECT ID_kampanja FROM kampanja ORDER BY ID_kampanja DESC LIMIT 1;";
     $rezultatZadnjiID = $veza->selectDB($upitZadnjiID);
     $IDkreiraneKampanje = null;
