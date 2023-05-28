@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.0, created on 2023-05-22 18:52:55
+/* Smarty version 4.3.0, created on 2023-05-28 14:42:32
   from 'C:\xampp\htdocs\projekt\templates\aktivacija_racuna.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.0',
-  'unifunc' => 'content_646b9de7c1f1f3_67556614',
+  'unifunc' => 'content_64734c389f0824_78873456',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ee6f9ab4df2816f820166348173c91c6bf560a6a' => 
     array (
       0 => 'C:\\xampp\\htdocs\\projekt\\templates\\aktivacija_racuna.tpl',
-      1 => 1684774216,
+      1 => 1685277751,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_646b9de7c1f1f3_67556614 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64734c389f0824_78873456 (Smarty_Internal_Template $_smarty_tpl) {
 echo '<script'; ?>
  src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"><?php echo '</script'; ?>
 >
@@ -47,6 +47,7 @@ echo '<script'; ?>
                 <?php }?>
               </form>
       </div>
+      <div style="height:25rem;"></div>
     </div>
     </main><?php }
 }

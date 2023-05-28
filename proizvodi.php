@@ -159,12 +159,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['kupibodovima'])) {
                         $rezultatupisikorisniku = $veza->selectDB($upitupisiproizvodkorisniku);
                         $upitPovecajBrojKupljenihProizvodaUKampanji = "UPDATE kampanja SET broj_kupljenih_proizvoda = broj_kupljenih_proizvoda + 1 WHERE ID_kampanja = '$idKampanjeIzSmarty';";
                         $rezultatPovecajBrojKupljenihProizvodaUKampanji = $veza->selectDB($upitPovecajBrojKupljenihProizvodaUKampanji);
-                        header("Location:" . $putanja . "/index.php");
                     }
                 }
             }
         }
     }
+    header("Location:" . $putanja . "/index.php");
 }
 
 $smarty->display('./templates/navigacija.tpl');

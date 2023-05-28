@@ -32,12 +32,14 @@ if (isset($_COOKIE['zadnja_prijava'])) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['prijavaButton'])) {
   $email = $_POST['email'];
   $lozinka = $_POST['lozinka'];
+  $dinamicka_sol = 'asFgzCrfTSrfuu';
+  $lozinka_kriptiranaZaPrijavu = hash('sha256', $lozinka . $dinamicka_sol);
   if (isset($_POST['zapamti'])) {
     $zapamti = $_POST['zapamti'];
   }
   @$zapamti = $_POST['zapamti'];
   if (empty($email) === false && empty($lozinka) === false) {
-    $upit = "SELECT * FROM korisnik WHERE email='$email' AND lozinka='$lozinka'";
+    $upit = "SELECT * FROM korisnik WHERE email='$email' AND lozinka_sha256='$lozinka_kriptiranaZaPrijavu'";
     $rezultat = $veza->selectDB($upit);
     if ($rezultat->num_rows > 0) {
       while ($redak = $rezultat->fetch_assoc()) {

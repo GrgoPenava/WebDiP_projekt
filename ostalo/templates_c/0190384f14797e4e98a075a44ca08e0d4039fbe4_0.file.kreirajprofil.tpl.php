@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.0, created on 2023-05-24 16:46:25
+/* Smarty version 4.3.0, created on 2023-05-28 14:20:21
   from 'C:\xampp\htdocs\projekt\templates\kreirajprofil.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.0',
-  'unifunc' => 'content_646e2341a6a065_10373830',
+  'unifunc' => 'content_64734705530297_48684241',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0190384f14797e4e98a075a44ca08e0d4039fbe4' => 
     array (
       0 => 'C:\\xampp\\htdocs\\projekt\\templates\\kreirajprofil.tpl',
-      1 => 1684939584,
+      1 => 1685015522,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_646e2341a6a065_10373830 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64734705530297_48684241 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="wrapper">
   <main>
     <section>
@@ -56,7 +56,7 @@ function provjera(){
 function provjeraSlike(){
 let datoteka = document.getElementById('slika').files[0].name;
 let splitaninaziv = datoteka.split(".");
-if(splitaninaziv[1] === "png" || splitaninaziv[1] === "jpg" || splitaninaziv[1] === "svg" || splitaninaziv[1] === "jpeg"){
+if(splitaninaziv[1] === "png"){
     return true;
 }else{
     return false;

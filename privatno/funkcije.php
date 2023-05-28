@@ -4,6 +4,7 @@ include 'baza.class.php';
 include 'sesija.class.php';
 
 $direktorij = getcwd();
+$putanja = dirname(dirname($_SERVER['REQUEST_URI']));
 
 $veza = new Baza();
 $veza->spojiDb();
@@ -25,7 +26,7 @@ if (isset($_GET["odjava"])) {
         }
     }
     Sesija::obrisiSesiju();
-    header("Location: ../index.php");
+    header("Location:" . $putanja . "/index.php");
 }
 
 if (isset($_POST['jezici'])) {
