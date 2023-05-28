@@ -48,6 +48,9 @@
                 <br />
                 {/if}
                 <div class="g-recaptcha" data-sitekey="6Ld4OywmAAAAAHBF4QmpTvPmHEEybGFuG15T0BXc" data-callback="captchakliknuta" data-expired-callback="captchakliknuta"></div>
+                <label for="ugasiJS" id="ugasiJS" style="color:black;">Ugasi JS: </label>
+                <input type="checkbox" id="ugasiJsValidaciju" name="ugasiJS" required="required" onchange="ugasi();" />
+                <br />
                 <input id="submit" type="submit" value="Registriraj se " name="registracijaButton" disabled />
                 <p id="porukaPogreskeJS" style='color: red; text-align: center;'></p>
                 {if isset($poruka_registracija)}
@@ -86,6 +89,13 @@
 
 <script type="text/javascript">
 
+function ugasi(){
+  let ugasielement = document.getElementById('ugasiJsValidaciju').checked;
+  if(ugasielement == true){
+    let submit = document.getElementById('submit').disabled = false;
+  }
+}
+
 function zaboravioSamLozinku(){
   let email = document.getElementById('email2').value;
   let zaboravljenalozinkaporuka = document.getElementById('zaboravljenalozinkaporuka');
@@ -118,6 +128,10 @@ provjeraSvihParametara();
   let captchavaljana = false;
 
   function checkNameSurname(){
+    let ugasielement = document.getElementById('ugasiJsValidaciju').checked;
+    if(ugasielement == true){
+      return;
+    }
     let imeprezime = document.getElementById('imeprezime').value;
     console.log(imeprezime);
     let splitanoimeprezime = imeprezime.split(' ');
@@ -152,6 +166,11 @@ provjeraSvihParametara();
                 }
             }
             });
+
+            let ugasielement = document.getElementById('ugasiJsValidaciju').checked;
+    if(ugasielement == true){
+      return;
+    }
     let valjanEmail = isEmailValid(document.getElementById('email').value);
     if (!valjanEmail) {
       document.getElementById('emaillabelregistracija').style.color="red";
@@ -197,6 +216,10 @@ provjeraSvihParametara();
       }
 
   function checkUsernameByJS() {
+    let ugasielement = document.getElementById('ugasiJsValidaciju').checked;
+    if(ugasielement == true){
+      return;
+    }
   let username = document.getElementById('username').value;
   let valjanUsername = isKorisnikValid(username);
   if (!valjanUsername) {
@@ -214,6 +237,10 @@ provjeraSvihParametara();
 }
 
 function isEmailValid(email) {
+  let ugasielement = document.getElementById('ugasiJsValidaciju').checked;
+    if(ugasielement == true){
+      return;
+    }
       const korisnikDomena = email.split("@");
 
       if (korisnikDomena.length !== 2) {
@@ -252,6 +279,10 @@ function isEmailValid(email) {
     }
 
     function checkLozinke(){
+      let ugasielement = document.getElementById('ugasiJsValidaciju').checked;
+    if(ugasielement == true){
+      return;
+    }
       let lozinka = document.getElementById('lozinka').value;
       console.log(lozinka);
       if (lozinka.length <= 5 || lozinka.length >= 30) {
@@ -282,6 +313,10 @@ function isEmailValid(email) {
     }
 
     function provjeraPotvrdeneLozinke(){
+      let ugasielement = document.getElementById('ugasiJsValidaciju').checked;
+    if(ugasielement == true){
+      return;
+    }
       let lozinka = document.getElementById('lozinka').value;
       let potvrdalozinke = document.getElementById('potvrdalozinke').value;
       if(lozinka === potvrdalozinke){
@@ -297,6 +332,10 @@ function isEmailValid(email) {
     }
 
     function provjeraSvihParametara(){
+      let ugasielement = document.getElementById('ugasiJsValidaciju').checked;
+    if(ugasielement == true){
+      return;
+    }
       let response = grecaptcha.getResponse();
       if(response.length>0){
         captchavaljana = true;
