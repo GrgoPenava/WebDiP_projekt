@@ -32,7 +32,6 @@ $upitTrenutniKorisnik = "SELECT ID_korisnik from korisnik where email = '$trenut
 $rezultatTrenutniKorisnik = $veza->selectDB($upitTrenutniKorisnik);
 if ($rezultatTrenutniKorisnik->num_rows > 0) {
     while ($redakTrenutniKorisnik = $rezultatTrenutniKorisnik->fetch_assoc()) {
-        var_dump($redakTrenutniKorisnik["ID_korisnik"]);
         $idTrenutnogKorisnika = $redakTrenutniKorisnik["ID_korisnik"];
         $smarty->assign('ID_korisnika', $idTrenutnogKorisnika);
     }

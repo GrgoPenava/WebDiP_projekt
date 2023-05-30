@@ -43,20 +43,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['prijavaButton'])) {
     $rezultat = $veza->selectDB($upit);
     if ($rezultat->num_rows > 0) {
       while ($redak = $rezultat->fetch_assoc()) {
-        if ($redak["blokiran"] == 0) {
-          Sesija::kreirajKorisnika($redak["email"], $redak["ID_uloga"]);
-
-          $trenutniDatumIVrijemeZaDnevnik = date('Y-m-d H:i:s');
-          $upitDnevnik = "INSERT INTO dnevnik_rada (ID_korisnik, datum_i_vrijeme_zapisa, radnja) VALUES ('$redak[ID_korisnik]','$trenutniDatumIVrijemeZaDnevnik','Prijava')";
-          $rezultatDnevnik = $veza->selectDB($upitDnevnik);
-
-          $upit2 = "UPDATE korisnik SET broj_neuspjesnih_prijava = 0 WHERE email='$email' AND lozinka='$lozinka'";
-          $rezultat2 = $veza->selectDB($upit2);
-          if (isset($zapamti)) {
-            setcookie("zadnja_prijava", $email, false, '/', false);
-          }
+        if ($redak["aktiviran_racun"] == 0) {
+          $poruka = "Morate aktivirati korisnički račun, pogledajte email!";
         } else {
-          $poruka = "Vaš račun je zaključan. Kontaktirajte administratora!";
+          if ($redak["blokiran"] == 0) {
+            Sesija::kreirajKorisnika($redak["email"], $redak["ID_uloga"]);
+
+            $trenutniDatumIVrijemeZaDnevnik = date('Y-m-d H:i:s');
+            $upitDnevnik = "INSERT INTO dnevnik_rada (ID_korisnik, datum_i_vrijeme_zapisa, radnja) VALUES ('$redak[ID_korisnik]','$trenutniDatumIVrijemeZaDnevnik','Prijava')";
+            $rezultatDnevnik = $veza->selectDB($upitDnevnik);
+
+            $upit2 = "UPDATE korisnik SET broj_neuspjesnih_prijava = 0 WHERE email='$email' AND lozinka='$lozinka'";
+            $rezultat2 = $veza->selectDB($upit2);
+            if (isset($zapamti)) {
+              setcookie("zadnja_prijava", $email, false, '/', false);
+            }
+          } else {
+            $poruka = "Vaš račun je zaključan. Kontaktirajte administratora!";
+          }
         }
       }
     } else {
@@ -154,9 +158,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['registracijaButton']) 
         $rezultatIDregistriranog = $veza->selectDB($upitIDregistriranog);
         if ($rezultatIDregistriranog->num_rows > 0) {
           while ($redakIDzaDnevnik = $rezultatIDregistriranog->fetch_assoc()) {
-            var_dump($redakIDzaDnevnik);
             $trenutniDatumIVrijemeZaDnevnik = date('Y-m-d H:i:s');
-            var_dump($trenutniDatumIVrijemeZaDnevnik);
             $upitDnevnik = "INSERT INTO dnevnik_rada (ID_korisnik, datum_i_vrijeme_zapisa, radnja) VALUES ('$redakIDzaDnevnik[ID_korisnik]','$trenutniDatumIVrijemeZaDnevnik','Registracija')";
             $rezultatDnevnik = $veza->selectDB($upitDnevnik);
           }

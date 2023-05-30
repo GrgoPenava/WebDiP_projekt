@@ -21,7 +21,6 @@ if (isset($_SESSION["uloga"])) {
     if ($rezultatkorisnik->num_rows > 0) {
         while ($redakkorisnik = $rezultatkorisnik->fetch_assoc()) {
             $trenutniKorisnik = $redakkorisnik;
-            var_dump($trenutniKorisnik['ID_korisnik']);
             $smarty->assign('Idkorisnika', $trenutniKorisnik['ID_korisnik']);
             $smarty->assign('Ulogakorisnika', $trenutniKorisnik['ID_uloga']);
         }

@@ -16,6 +16,7 @@
             <a href="{$putanja}/ostalo/profil.php">Profil</a>
         {/if}
         <a href="{$putanja}/o_autoru.php">O autoru</a>
+        <a href="{$putanja}/dokumentacija.php">Dokumentacija</a>
         {if isset($smarty.session.uloga)}
             <a href='?odjava=da'><button type='button' class='odjava-button'>Odjava</button></a>
         {/if}

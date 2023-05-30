@@ -26,7 +26,7 @@ if (isset($_GET["odjava"])) {
         }
     }
     Sesija::obrisiSesiju();
-    header("Location:" . $putanja . "/index.php");
+    //header("Location:" . $putanja . "/index.php");
 }
 
 if (isset($_POST['jezici'])) {

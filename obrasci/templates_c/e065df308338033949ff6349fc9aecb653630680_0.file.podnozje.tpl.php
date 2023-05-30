@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.0, created on 2023-05-26 14:21:28
+/* Smarty version 4.3.0, created on 2023-05-30 20:14:20
   from 'C:\xampp\htdocs\projekt\templates\podnozje.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.0',
-  'unifunc' => 'content_6470a448afac62_75635246',
+  'unifunc' => 'content_64763cfcc56096_11065600',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e065df308338033949ff6349fc9aecb653630680' => 
     array (
       0 => 'C:\\xampp\\htdocs\\projekt\\templates\\podnozje.tpl',
-      1 => 1685103556,
+      1 => 1685470440,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6470a448afac62_75635246 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64763cfcc56096_11065600 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 </main>
     <div class="povijest" style="margin-top:2rem;">
@@ -30,7 +30,7 @@ function content_6470a448afac62_75635246 (Smarty_Internal_Template $_smarty_tpl)
 /multimedija/HTML5.png" alt="HTML5 validacija" />
       </a>
 
-      <a href="https://jigsaw.w3.org/css-validator/validator?uri=http://barka.foi.hr/WebDiP/2022/zadaca_01/gpenava/css/gpenava.css">
+      <a href="https://jigsaw.w3.org/css-validator/validator?uri=https://barka.foi.hr/WebDiP/2022_projekti/WebDiP2022x033/css/gpenava.css">
         <img class="css-picture" src="<?php echo $_smarty_tpl->tpl_vars['putanja']->value;?>
 /multimedija/CSS3.png" alt="CSS3 validacija" />
       </a>

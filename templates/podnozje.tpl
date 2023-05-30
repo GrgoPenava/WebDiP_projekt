@@ -6,7 +6,7 @@
         <img class="html5-picture" src="{$putanja}/multimedija/HTML5.png" alt="HTML5 validacija" />
       </a>
 
-      <a href="https://jigsaw.w3.org/css-validator/validator?uri=http://barka.foi.hr/WebDiP/2022/zadaca_01/gpenava/css/gpenava.css">
+      <a href="https://jigsaw.w3.org/css-validator/validator?uri=https://barka.foi.hr/WebDiP/2022_projekti/WebDiP2022x033/css/gpenava.css">
         <img class="css-picture" src="{$putanja}/multimedija/CSS3.png" alt="CSS3 validacija" />
       </a>
 

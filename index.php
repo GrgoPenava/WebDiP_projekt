@@ -94,7 +94,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['datumButton'])) {
     $smarty->assign('kampanje', $kampanje);
   }
   if (strlen($_POST['drugidatum'] > 2)) {
-    var_dump($_POST['drugidatum']);
     foreach ($kampanje as $kampanja => $redak) {
       if (date("Y-m-d", strtotime($redak['datum_i_vrijeme_zavrsetka'])) > $kraj) {
         unset($kampanje[$kampanja]);

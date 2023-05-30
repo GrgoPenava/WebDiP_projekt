@@ -95,7 +95,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['kupinovcem'])) {
                 $rezultatProvjeraZaStatus = $veza->selectDB($upitProvjeraZaStatus);
                 if ($rezultatProvjeraZaStatus->num_rows > 0) {
                     while ($redakZaStatus = $rezultatProvjeraZaStatus->fetch_assoc()) {
-                        var_dump($redakZaStatus);
                         if ($redakZaStatus["kolicina"] == 0 || $redakZaStatus["kolicina"] == null) {
                             $upitUpisiZaStatus = "UPDATE proizvod SET id_status_proizvoda = 2 WHERE ID_proizvod = '$idProizvod'";
                             $rezultatUpisiZaStatus = $veza->selectDB($upitUpisiZaStatus);

@@ -51,9 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['korisnik'])) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['urediUloguKorisnika'])) {
     $IDkorisnikaZaUrediti = $_POST["ID_korisnik"];
-    var_dump($IDkorisnikaZaUrediti);
     $ulogaNova = $_POST["uloga"];
-    var_dump($ulogaNova);
     $upitUrediUlogu = "UPDATE korisnik SET ID_uloga = '$ulogaNova' WHERE ID_korisnik = '$IDkorisnikaZaUrediti'";
     $rezultatUredivanjaUloge = $veza->selectDB($upitUrediUlogu);
     $trenutniDatumIVrijemeZaDnevnik = date('Y-m-d H:i:s');
